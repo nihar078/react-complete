@@ -1,0 +1,25 @@
+.items {
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 80rem;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 10px;
+  }
+  
+  .items ul {
+    list-style: none;
+    padding: 1rem;
+  }
+  
+  .items li {
+    /* border: 1px solid #ccc; */
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+  }
+  .list{
+    display: flex;
+    gap: 5rem;
+    /* justify-content: space-between; */
+  }
+  
