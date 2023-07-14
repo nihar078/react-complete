@@ -1,0 +1,13 @@
+.heading {    
+    text-align: center;
+    margin: 2px 0px;
+    background-color: rgb(122, 118, 118);
+    padding-bottom: 56px;
+}
+
+.heading h1 {
+    font-family: 'Noto Serif', serif;
+    font-size: 100px;
+    color: #fff;
+    font-weight: 700;
+}
