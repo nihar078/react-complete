@@ -2,10 +2,10 @@ import React from "react";
 import NavigationBar from "./NavigationBar";
 import Title from "./Title";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header>
-      <NavigationBar />
+      <NavigationBar onOpenCart={props.onShowCart}/>
       <Title/>
     </header>
   );

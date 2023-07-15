@@ -1,0 +1,14 @@
+.modal {
+    display: block ;
+    max-width: 400px ;
+    position: fixed;
+    overflow: hidden;
+    top: 50px ;
+    right: 0 ;
+    margin: 0;
+    left: auto ;
+    background-color: #fff;
+    border: 1px solid brown;
+    padding: 20px 30px ;
+    font-family: sans-serif ;
+}

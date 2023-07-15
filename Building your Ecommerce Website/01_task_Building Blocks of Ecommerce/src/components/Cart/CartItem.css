@@ -1,0 +1,21 @@
+.item img {
+    padding-right: 10px;    
+}
+.quantity {
+    padding-left: 0px !important;
+}
+
+.quantity input {
+    width: 40px;
+    height: 30px;
+    border: 1px solid rgb(0, 204, 255);
+    border-radius: 8%;
+    outline: none;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.cart-img {
+    width: 80px;
+    border-radius: 8%;      
+}

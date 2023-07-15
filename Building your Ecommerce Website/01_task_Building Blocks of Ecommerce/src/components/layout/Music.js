@@ -34,7 +34,7 @@ const Music = () => {
       <h1>Music</h1>
       <Container>
         <Row xs={4} md={2}>
-          {productsArr.map((product) => (
+          {productsArr.map((product, index) => (
             <div key={product.id}>
               <Col className="d-flex justify-content-center">
                 <Card className="card-wrap" style={{ width: "18rem" }}>
