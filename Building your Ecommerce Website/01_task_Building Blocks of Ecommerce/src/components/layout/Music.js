@@ -1,40 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Music.css";
 import { Card, Col, Container, Button, Row } from "react-bootstrap";
+import CartContext from "../../store/cart-context";
 
 const productsArr = [
   {
     id: "Album 1",
     title: "Colors",
     price: 100,
+    quantity: 1,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
   },
   {
     id: "Album 2",
     title: "Black and white Colors",
     price: 50,
+    quantity: 1,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
   },
   {
     id: "Album 3",
     title: "Yellow and Black Colors",
     price: 70,
+    quantity: 1,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
   },
   {
     id: "Album 4",
     title: "Blue Color",
     price: 100,
+    quantity: 1,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
   },
 ];
 const Music = () => {
+  const cartCntx = useContext(CartContext)
+  const addItemToCartHandler = (item) =>{
+    // console.log(item)
+    cartCntx.addItem(item)
+    // console.log(cartCntx)
+  }
   return (
     <div className="music">
       <h1>Music</h1>
       <Container>
         <Row xs={4} md={2}>
-          {productsArr.map((product, index) => (
+          {productsArr.map((product) => (
             <div key={product.id}>
               <Col className="d-flex justify-content-center">
                 <Card className="card-wrap" style={{ width: "18rem" }}>
@@ -45,7 +56,7 @@ const Music = () => {
                     </div>
                     <Card.Text className="mt-3">
                       {`$${product.price}`}
-                      <Button className="button-wrap" variant="info">
+                      <Button className="button-wrap" variant="info" onClick={() => addItemToCartHandler(product)}>
                         ADD TO CART
                       </Button>
                     </Card.Text>

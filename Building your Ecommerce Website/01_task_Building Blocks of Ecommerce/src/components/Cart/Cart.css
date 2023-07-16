@@ -19,7 +19,7 @@
     padding: 5px;
 }
 .cancel:hover {
-    background: none ;
+    background: none !important;
 }
 
 .cart-column {

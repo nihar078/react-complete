@@ -3,13 +3,14 @@
 }
 .quantity {
     padding-left: 0px !important;
+    
 }
 
-.quantity input {
+.quantity span{
     width: 40px;
     height: 30px;
     border: 1px solid rgb(0, 204, 255);
-    border-radius: 8%;
+    border-radius: 10%;
     outline: none;
     text-align: center;
     margin-right: 20px;
