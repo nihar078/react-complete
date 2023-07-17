@@ -5,6 +5,7 @@ import Footer from "./components/footer/Footer";
 import Cart from "./components/Cart/Cart";
 import CartProvider from "./store/CartProvider";
 import About from "./components/About/About";
+import Home from "./components/Home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
@@ -24,8 +25,12 @@ const App = () => {
         <Header onShowCart={showCartHandler} />
         {cartIsShown && <Cart onClose={hideCartHandler} />}
         <Routes>
-          <Route path="/about" element={<About/>}/>
-          <Route path="/store" element={<Music onShowCart={showCartHandler}/>} />
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/store"
+            element={<Music onShowCart={showCartHandler} />}
+          />
+          <Route path="/Home" element={<Home />} />
         </Routes>
         <Footer />
       </CartProvider>

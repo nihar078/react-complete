@@ -13,7 +13,7 @@ const NavigationBar = (props) => {
             <NavLink
               to="/home"
               className=" pe-5"
-              style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none" }}
+              style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none"}}
               // style={({isActive}) => ({
               //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
               // })}
@@ -22,7 +22,7 @@ const NavigationBar = (props) => {
             </NavLink>
             <NavLink
               to="/store"
-              className="pe-5"
+              className=" pe-5"
               style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none" }}
               // style={({isActive}) => ({
               //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
