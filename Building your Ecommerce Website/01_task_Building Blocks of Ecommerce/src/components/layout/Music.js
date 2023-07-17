@@ -33,7 +33,7 @@ const productsArr = [
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
   },
 ];
-const Music = () => {
+const Music = (props) => {
   const cartCntx = useContext(CartContext)
   const addItemToCartHandler = (item) =>{
     // console.log(item)
@@ -67,7 +67,7 @@ const Music = () => {
           ))}
         </Row>
         <div className="text-center mt-3">
-          <Button variant="secondary" style={{color: "lightblue" , fontWeight: "bold"}}>See the cart</Button>
+          <Button variant="secondary" style={{color: "lightblue" , fontWeight: "bold"}} onClick={props.onShowCart}>See the cart</Button>
         </div>
       </Container>
     </div>

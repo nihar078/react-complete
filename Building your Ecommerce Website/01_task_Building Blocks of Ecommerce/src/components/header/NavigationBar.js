@@ -1,37 +1,48 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import CartButton from "./CartButton";
+import { NavLink, useLocation } from "react-router-dom";
 
 const NavigationBar = (props) => {
+  const location = useLocation();
   return (
     <div>
       <Navbar bg="dark" expand="lg" variant="dark" className="p-1">
         <Container>
           <Nav className="m-auto">
-            <Nav.Link
-              href="#home"
+            <NavLink
+              to="/home"
               className=" pe-5"
-              style={{ color: "white", fontFamily: "serif", fontSize: "18px" }}
+              style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none" }}
+              // style={({isActive}) => ({
+              //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
+              // })}
             >
               HOME
-            </Nav.Link>
-            <Nav.Link
-              href="#store"
+            </NavLink>
+            <NavLink
+              to="/store"
               className="pe-5"
-              style={{ color: "white", fontFamily: "serif", fontSize: "18px" }}
+              style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none" }}
+              // style={({isActive}) => ({
+              //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
+              // })}
             >
               STORE
-            </Nav.Link>
-            <Nav.Link
-              href="#about"
+            </NavLink>
+            <NavLink
+              to="/about"
               className=" pe-5"
-              style={{ color: "white", fontFamily: "serif", fontSize: "18px" }}
+              style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none"}}
+              // style={({isActive}) => ({
+              //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
+              // })}
             >
               ABOUT
-            </Nav.Link>
+            </NavLink>
           </Nav>
         </Container>
-        <CartButton onOpen={props.onOpenCart} />
+        {location.pathname === "/store" && <CartButton onOpen={props.onOpenCart} />}
       </Navbar>
     </div>
   );
