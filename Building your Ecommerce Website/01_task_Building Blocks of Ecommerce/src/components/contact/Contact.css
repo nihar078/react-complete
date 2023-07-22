@@ -1,0 +1,23 @@
+.saveUser-wrap {
+    margin: 0px 200px;
+    text-align: center;
+    color: rgb(122, 118, 118);
+    padding: 22px 22px;
+    border: 1px solid #56ccf2;
+}
+
+.saveUser-wrap h5 {
+    padding: 20px;
+}
+
+.form-wrap {
+    margin: 0px 122px;
+    padding: 22px 22px ;
+}
+
+Form button {
+    background: #56ccf2 !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    border-color: #56ccf2 !important;
+}

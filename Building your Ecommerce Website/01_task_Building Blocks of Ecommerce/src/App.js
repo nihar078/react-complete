@@ -7,6 +7,7 @@ import CartProvider from "./store/CartProvider";
 import About from "./components/About/About";
 import Home from "./components/Home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Contact from "./components/contact/Contact";
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -31,6 +32,7 @@ const App = () => {
             element={<Music onShowCart={showCartHandler} />}
           />
           <Route path="/Home" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
       </CartProvider>
