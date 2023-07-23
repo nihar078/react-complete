@@ -12,7 +12,7 @@ const NavigationBar = (props) => {
           <Nav className="m-auto">
             <NavLink
               to="/home"
-              className=" pe-5"
+              className=" mx-3 px-2"
               style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none"}}
               // style={({isActive}) => ({
               //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
@@ -22,7 +22,7 @@ const NavigationBar = (props) => {
             </NavLink>
             <NavLink
               to="/store"
-              className=" pe-5"
+              className=" mx-3 px-2"
               style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none" }}
               // style={({isActive}) => ({
               //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
@@ -32,7 +32,7 @@ const NavigationBar = (props) => {
             </NavLink>
             <NavLink
               to="/about"
-              className=" pe-5"
+              className="mx-3 px-2"
               style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none"}}
               // style={({isActive}) => ({
               //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
@@ -42,7 +42,7 @@ const NavigationBar = (props) => {
             </NavLink>
             <NavLink
             to='/contact'
-            className="pe-5"
+            className="mx-3 px-2"
             style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none"}}
             >
               CONTACT US
