@@ -5,12 +5,13 @@ import { NavLink, useLocation } from "react-router-dom";
 import AuthContext from "../../store/AuthContex";
 
 const NavigationBar = (props) => {
-  const authCtx = useContext(AuthContext)
+  const authCtx = useContext(AuthContext);
   const location = useLocation();
 
-  const logoutHandler = () =>{
-    authCtx.logout()
-  }
+  const logoutHandler = () => {
+    authCtx.logout();
+    
+  };
   return (
     <div>
       <Navbar bg="dark" expand="lg" variant="dark" className="p-1">
@@ -19,56 +20,77 @@ const NavigationBar = (props) => {
             <NavLink
               to="/home"
               className=" mx-3 px-2"
-              style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none"}}
-              // style={({isActive}) => ({
-              //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
-              // })}
+              style={{
+                color: "white",
+                fontFamily: "serif",
+                fontSize: "18px",
+                textDecoration: "none",
+              }}
             >
               HOME
             </NavLink>
             <NavLink
               to="/store"
               className=" mx-3 px-2"
-              style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none" }}
-              // style={({isActive}) => ({
-              //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
-              // })}
+              style={{
+                color: "white",
+                fontFamily: "serif",
+                fontSize: "18px",
+                textDecoration: "none",
+              }}
             >
               STORE
             </NavLink>
             <NavLink
               to="/about"
               className="mx-3 px-2"
-              style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none"}}
-              // style={({isActive}) => ({
-              //   color: isActive ? "white" : "", fontFamily: isActive ? "serif" : "", fontSize: isActive ? "18px" : 0
-              // })}
+              style={{
+                color: "white",
+                fontFamily: "serif",
+                fontSize: "18px",
+                textDecoration: "none",
+              }}
             >
               ABOUT
             </NavLink>
             <NavLink
-            to='/contact'
-            className="mx-3 px-2"
-            style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none"}}
+              to="/auth"
+              className="mx-3 px-2"
+              style={{
+                color: "white",
+                fontFamily: "serif",
+                fontSize: "18px",
+                textDecoration: "none",
+              }}
+            >
+              {!authCtx.isLoggedIn && "Login"}
+              {authCtx.isLoggedIn && (
+                <Button
+                  type="button"
+                  style={{ backgroundColor: "black" }}
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </Button>
+              )}
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className="mx-3 px-2"
+              style={{
+                color: "white",
+                fontFamily: "serif",
+                fontSize: "18px",
+                textDecoration: "none",
+              }}
             >
               CONTACT US
             </NavLink>
-            <NavLink
-            to='/auth'
-            className="mx-3 px-2"
-            style={{ color: "white", fontFamily: "serif", fontSize: "18px", textDecoration: "none"}}
-            >
-              {!authCtx.isLoggedIn && "Login"}
-              <NavLink>
-                {authCtx.isLoggedIn && (
-                  <Button type="button" style={{backgroundColor: "black"}} onClick={logoutHandler}>Logout</Button>
-                )}
-              </NavLink>
-
-            </NavLink>
           </Nav>
         </Container>
-        {location.pathname === "/store" && <CartButton onOpen={props.onOpenCart} />}
+        {location.pathname === "/store" && (
+          <CartButton onOpen={props.onOpenCart} />
+        )}
       </Navbar>
     </div>
   );

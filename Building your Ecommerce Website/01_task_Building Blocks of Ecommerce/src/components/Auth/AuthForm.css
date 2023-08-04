@@ -51,26 +51,28 @@
     cursor: pointer;
     font: inherit !important;
     color: white;
-    background-color:rgb(122, 118, 118) !important;
-    border: 1px solid rgb(122, 118, 118) !important;
+    background-color: #9f5ccc;
+    border: 1px solid #9f5ccc;
     border-radius: 4px;
     padding: 0.5rem 2.5rem;
   }
 
   .actions button:hover {
-    background-color: rgb(122, 118, 118);
-    border-color: rgb(122, 118, 118);
+    background-color: #873abb;
+    color: #873abb;
+    border-color: #873abb;
   }
 
   .actions .toggle {
     margin-top: 1rem;
     background-color: transparent;
-    color: rgb(122, 118, 118);
+    /* color: #9f5ccc; */
     border: none;
     padding: 0.15rem 1.5rem;
   }
 
   .actions .toggle:hover {
     background-color: transparent;
-    color: rgb(122, 118, 118);
-  }
+    color: #ae82cc;
+}
+  
