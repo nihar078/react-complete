@@ -27,30 +27,6 @@ const AuthForm = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    // const response = await fetch(
-    //   "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCAYVAohSypPUpS3t0CeHuOGG8-tb310A0",
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       email: enteredEmail,
-    //       password: enteredPassword,
-    //       returnSecureToken: true,
-    //     }),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // );
-
-    // if(!response.ok){
-    //   const data = await response.json()
-    //   alert(data.error.message)
-    // }
-    // else{
-    //   const data = await response.json()
-    //   authCtx.login(data.idToken)
-    //   navigate('/store')
-    // }
     let url;
     if (isLogin) {
       url =
@@ -74,7 +50,13 @@ const AuthForm = () => {
       if (response.ok) {
         const data = await response.json();
         // console.log(data)
-        authCtx.login(data.idToken);
+        const userEmail = enteredEmail.replace(/[@.]/g, "")
+        // authCtx.login(data.idToken);
+        authCtx.login({
+          token: data.idToken,
+          email: userEmail
+        })
+
         // localStorage.setItem("tokenId", data.idToken)
         navigate("/store");
         // history.replace("/store");
