@@ -6,16 +6,16 @@ import './ProductDetails.css'
 
 const ProductDetails = () => {
   const location = useLocation();
-  const id = useParams();
+  const param = useParams();
   const cartCtx = useContext(CartContext);
 
   const item = {
-    id: id,
+    id: param.id,
     title: location.state.title,
     price: location.state.price,
     quantity: location.state.quantity,
     review: location.state.review,
-    imageURL: location.state.image,
+    imageUrl: location.state.image,
   };
 
   const addToCartHandler = (item) => {
@@ -29,7 +29,7 @@ const ProductDetails = () => {
       <Container>
         <Row className="product ">
           <Col className="product-image">
-            <img src={item.imageURL} alt={item.title} />
+            <img src={item.imageUrl} alt={item.title} />
           </Col>
           <Col className="product-details">
             <h5>Product Details</h5>

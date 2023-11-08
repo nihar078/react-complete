@@ -13,7 +13,7 @@ const CartProvider = (props) => {
     const fetchCartItems = async () => {
       try {
         const response = await fetch(
-          `https://crudcrud.com/api/f978af0f42984da38c9af188893eb805/cart${authCtx.email}`,
+          `https://crudcrud.com/api/334e6749cd794c9d94f00e823d89d543/cart${authCtx.email}`,
           { method: "GET" }
         );
         if (response.ok) {
@@ -44,7 +44,7 @@ const CartProvider = (props) => {
       console.log("put work...");
       try {
         const response = await fetch(
-          `https://crudcrud.com/api/f978af0f42984da38c9af188893eb805/cart${authCtx.email}/${items[itemIndex]._id}`,
+          `https://crudcrud.com/api/334e6749cd794c9d94f00e823d89d543/cart${authCtx.email}/${items[itemIndex]._id}`,
           {
             method: "PUT", // Use PUT to update quantity
             body: JSON.stringify({
@@ -80,7 +80,7 @@ const CartProvider = (props) => {
       console.log("post work");
       try {
         const response = await fetch(
-          `https://crudcrud.com/api/f978af0f42984da38c9af188893eb805/cart${authCtx.email}`,
+          `https://crudcrud.com/api/334e6749cd794c9d94f00e823d89d543/cart${authCtx.email}`,
           {
             method: "POST",
             body: JSON.stringify(item),
@@ -115,7 +115,7 @@ const CartProvider = (props) => {
       // Delete the item from the server
       try {
         const response = await fetch(
-          `https://crudcrud.com/api/f978af0f42984da38c9af188893eb805/cart${authCtx.email}/${deletedItemId}`,
+          `https://crudcrud.com/api/334e6749cd794c9d94f00e823d89d543/cart${authCtx.email}/${deletedItemId}`,
           {
             method: "DELETE",
           }
@@ -133,7 +133,7 @@ const CartProvider = (props) => {
         newCartItems[itemIndex].quantity = newCartItems[itemIndex].quantity - 1;
         try {
           const response = await fetch(
-            `https://crudcrud.com/api/f978af0f42984da38c9af188893eb805/cart${authCtx.email}/${items[itemIndex]._id}`,
+            `https://crudcrud.com/api/334e6749cd794c9d94f00e823d89d543/cart${authCtx.email}/${items[itemIndex]._id}`,
             {
               method: "PUT", // Use PUT to update quantity
               body: JSON.stringify({
