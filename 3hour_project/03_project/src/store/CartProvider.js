@@ -6,32 +6,84 @@ const CartProvider = (props) => {
   const [items, updateItems] = useState([]);
 
   const [inventoryItems, setInventoryItems] = useState([]);
+  // useEffect(() => {
+  //   const fetchCartItems = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://crudcrud.com/api/4cf6eec5d57d4d80a5b2d79dac090115/cart`,
+  //         { method: "GET" }
+  //       );
+
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         console.log(data);
+  //         updateItems(data);
+  //       } else {
+  //         console.error("Error fetching cart items");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching cart items", error);
+  //     }
+  //   };
+
+  //   fetchCartItems();
+  // }, []); // Empty dependency array means this effect runs once after the initial render
+
   useEffect(() => {
-    const fetchCartItems = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://crudcrud.com/api/4cf6eec5d57d4d80a5b2d79dac090115/cart`,
-          { method: "GET" }
-        );
-  
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data);
-          updateItems(data);
+        const [cartResponse, inventoryResponse] = await Promise.all([
+          fetch(
+            `https://crudcrud.com/api/4cf6eec5d57d4d80a5b2d79dac090115/cart`
+          ),
+          fetch(
+            `https://crudcrud.com/api/4cf6eec5d57d4d80a5b2d79dac090115/items`
+          ), // Replace with the actual endpoint for your inventory items
+        ]);
+
+        if (cartResponse.ok) {
+          const cartData = await cartResponse.json();
+          updateItems(cartData);
         } else {
           console.error("Error fetching cart items");
         }
+
+        if (inventoryResponse.ok) {
+          const inventoryData = await inventoryResponse.json();
+          setInventoryItems(inventoryData);
+        } else {
+          console.error("Error fetching inventory items");
+        }
       } catch (error) {
-        console.error("Error fetching cart items", error);
+        console.error("Error fetching data:", error);
       }
     };
-  
-    fetchCartItems();
+
+    fetchData();
   }, []); // Empty dependency array means this effect runs once after the initial render
-  
-  
-  const addInventoryItemHandler = (item) => {
+
+  const addInventoryItemHandler = async (item) => {
     setInventoryItems([...inventoryItems, item]);
+    try {
+      const response = await fetch(
+        `https://crudcrud.com/api/4cf6eec5d57d4d80a5b2d79dac090115/items`,
+        {
+          method: "Post",
+          body: JSON.stringify(item),
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+      if(response.ok){
+        const idata = await response.json();
+        console.log("inventory post", [...inventoryItems, idata])
+        setInventoryItems([...inventoryItems, idata])
+      }
+      else{
+        throw new Error("Error saving cart item")
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const addItemToCartHandler = async (item) => {
@@ -58,14 +110,17 @@ const CartProvider = (props) => {
             headers: { "Content-Type": "application/json" },
           }
         );
-        if(response.ok){
-          console.log("Quantity updated succesfully")
-        }
-        else{
-          console.error("Error updating quantity:", response.status, response.statusText)
+        if (response.ok) {
+          console.log("Quantity updated succesfully");
+        } else {
+          console.error(
+            "Error updating quantity:",
+            response.status,
+            response.statusText
+          );
         }
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     } else {
       updateItems([...items, item]);
@@ -93,7 +148,7 @@ const CartProvider = (props) => {
     // console.log("inside addItemToHandler", cartContext);
   };
 
-  const removeItemFromCartHandler = async(id) => {
+  const removeItemFromCartHandler = async (id) => {
     const itemIndex = items.findIndex((cartItem) => cartItem.id === id);
     if (itemIndex > -1) {
       const newCartItems = [...items];
@@ -101,17 +156,23 @@ const CartProvider = (props) => {
       if (newCartItems[itemIndex].quantity === 1) {
         const deletedItemId = newCartItems[itemIndex]._id;
         try {
-          const response = await fetch(`https://crudcrud.com/api/4cf6eec5d57d4d80a5b2d79dac090115/cart/${deletedItemId}`, {
-            method: "DELETE"
-          })
-          if(response.ok){
-            console.log("Item deleted successfully from the sever")
-          }
-          else{
-            console.error("Error deleting item:", response.status, response.statusText)
+          const response = await fetch(
+            `https://crudcrud.com/api/4cf6eec5d57d4d80a5b2d79dac090115/cart/${deletedItemId}`,
+            {
+              method: "DELETE",
+            }
+          );
+          if (response.ok) {
+            console.log("Item deleted successfully from the sever");
+          } else {
+            console.error(
+              "Error deleting item:",
+              response.status,
+              response.statusText
+            );
           }
         } catch (error) {
-          console.error(error)
+          console.error(error);
         }
         newCartItems.splice(itemIndex, 1);
       } else {
@@ -130,14 +191,17 @@ const CartProvider = (props) => {
               headers: { "Content-Type": "application/json" },
             }
           );
-          if(response.ok){
-            console.log("Quantity updated succesfully")
-          }
-          else{
-            console.error("Error updating quantity:", response.status, response.statusText)
+          if (response.ok) {
+            console.log("Quantity updated succesfully");
+          } else {
+            console.error(
+              "Error updating quantity:",
+              response.status,
+              response.statusText
+            );
           }
         } catch (error) {
-          console.error(error)
+          console.error(error);
         }
       }
       updateItems(newCartItems);
