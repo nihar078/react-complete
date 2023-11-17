@@ -6,10 +6,12 @@ import AuthContext from "../../store/AuthContext";
 const MainNavigation = () => {
   const authCtx = useContext(AuthContext);
   // const navigate = useNavigate()
+  
   const logoutHandler = () => {
     authCtx.logout();
     // navigate("/auth");
   };
+
   return (
     <div>
       <header>

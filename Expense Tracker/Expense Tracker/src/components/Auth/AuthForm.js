@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Button, Container, Form, Alert } from "react-bootstrap";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthContext from "../../store/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./AuthForm.css";
-
-
-
 
 const AuthForm = () => {
   console.log("AuthForm rendered");
@@ -15,12 +13,19 @@ const AuthForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
   //   const [isLoading, setIsLoading] = useState(false);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
   const emailHandler = (event) => {
     setEmail(event.target.value);
   };
@@ -106,7 +111,7 @@ const AuthForm = () => {
     // setPassword("");
     // }
 
-    setShowAlert(false)
+    setShowAlert(false);
     let url;
     if (isLogin) {
       url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA_AYVFYK_Apy1tAbRKzko3LPCcqO4Kf6w`;
@@ -126,21 +131,20 @@ const AuthForm = () => {
           "Content-Type": "application/json",
         },
       });
-      if(response.ok){
-        const data = await response.json()
-        authCtx.login({token: data.idToken})
-        navigate("/home")
-      }
-      else{
-        const data = await response.json()
-        let errorMessage = "Authentication failed"
-        if(data && data.error && data.error.message){
-          errorMessage = data.error.message
-          throw new Error(errorMessage)
+      if (response.ok) {
+        const data = await response.json();
+        authCtx.login({ token: data.idToken });
+        navigate("/home");
+      } else {
+        const data = await response.json();
+        let errorMessage = "Authentication failed";
+        if (data && data.error && data.error.message) {
+          errorMessage = data.error.message;
+          throw new Error(errorMessage);
         }
       }
     } catch (error) {
-      alert(error.message)
+      alert(error.message);
     }
   };
 
@@ -160,11 +164,18 @@ const AuthForm = () => {
         <Form.Group className="control" controlId="formGroupPassword">
           <Form.Label>Password:</Form.Label>
             <Form.Control
-              type="password"
+              type={showPassword ? "text" : "password"}
               required
               value={password}
               onChange={passwordHandler}
             />
+            <Button
+              className="password-tooggle"
+              variant="link"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ?  <FaEye /> : <FaEyeSlash />}
+            </Button>
         </Form.Group>
         {!isLogin && (
           <Form.Group className="control" controlId="fromGroupConfirmPassword">
@@ -187,6 +198,7 @@ const AuthForm = () => {
             {isLogin ? "Login" : "SignUp"}
           </Button>
         </div>
+        <Button variant="link">{isLogin && "Forgot password"}</Button>
       </Form>
       <div className="actions">
         <Button
