@@ -52,29 +52,29 @@
   }
 
   .actions button {
-    cursor: pointer;
+    /* cursor: pointer; */
     font: inherit !important;
     /* color: white; */
     /* background-color:rgb(122, 118, 118) !important; */
     /* border: 1px solid rgb(122, 118, 118) !important; */
-    border-radius: 4px;
-    padding: 0.5rem 2.5rem;
+    border-radius: 20px;
+    padding: 0.5rem 10rem;
   }
 
-  .actions button:hover {
+  /* .actions button:hover {
     background-color: blue;
     border-color: blue;
-  }
+  } */
 
   .actions .toggle {
     margin-top: 1rem;
-    background-color: transparent;
-    color: white;
-    border: none;
-    padding: 0.15rem 1.5rem;
+    background-color: rgb(185, 241, 185);
+    /* color: white; */
+    /* border: none; */
+    padding: 0.3rem 1.5rem;
   }
 
-  .actions .toggle:hover {
+  /* .actions .toggle:hover {
     background-color: transparent;
     color: white;
-  }
+  } */
