@@ -30,15 +30,17 @@ const App = () => {
         {/* <Route path="/home" element={<>{authCtx.isLoggedIn ? <Header /> : <Navigate to="/auth" />}</>} /> */}
         <Route path="/auth" element={<AuthForm />} />
         <Route path="*" element={<Navigate to="/" />} />
-        <Route
-          path="/profile"
-          element={
-            <>
-              <Header />
-              <Profile />
-            </>
-          }
-        />
+        {authCtx.isLoggedIn && (
+          <Route
+            path="/profile"
+            element={
+              <>
+                <Header />
+                <Profile />
+              </>
+            }
+          />
+        )}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Fragment>
