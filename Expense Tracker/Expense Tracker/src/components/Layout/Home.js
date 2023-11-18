@@ -56,6 +56,7 @@ import AuthContext from "../../store/AuthContext";
 import { NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import "./Home.css";
+import VerificationEmail from "../Profile/VerificationEmail";
 
 const Home = () => {
   const authCtx = useContext(AuthContext);
@@ -118,6 +119,7 @@ const Home = () => {
             ? "Welcome to Expense Tracker!!!"
             : "Winners never quit, Quitters never win."}
         </h1>
+        {!open && <VerificationEmail />}
         {renderProfileMessage()}
       </Nav>
     </div>
