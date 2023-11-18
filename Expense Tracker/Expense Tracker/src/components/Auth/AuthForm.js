@@ -101,7 +101,7 @@ const AuthForm = () => {
     //   //   setIsLoading(true);
     //   const data = await response.json();
     //   console.log("succesfully login", data);
-    //   authCtx.login({token: data.idToken});
+    //   authCtx.login({token: data.idToken, email: email});
     //   // navigate("/home");
     // } else {
     //   const data = await response.json();
@@ -133,7 +133,8 @@ const AuthForm = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        authCtx.login({ token: data.idToken });
+        console.log(data)
+        authCtx.login({ token: data.idToken, email: email });
         navigate("/home");
       } else {
         const data = await response.json();
@@ -163,19 +164,19 @@ const AuthForm = () => {
         </Form.Group>
         <Form.Group className="control" controlId="formGroupPassword">
           <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type={showPassword ? "text" : "password"}
-              required
-              value={password}
-              onChange={passwordHandler}
-            />
-            <Button
-              className="password-tooggle"
-              variant="link"
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ?  <FaEye /> : <FaEyeSlash />}
-            </Button>
+          <Form.Control
+            type={showPassword ? "text" : "password"}
+            required
+            value={password}
+            onChange={passwordHandler}
+          />
+          <Button
+            className="password-tooggle"
+            variant="link"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
+          </Button>
         </Form.Group>
         {!isLogin && (
           <Form.Group className="control" controlId="fromGroupConfirmPassword">

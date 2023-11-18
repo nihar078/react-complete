@@ -12,23 +12,23 @@ export const AuthContextProvider = (props) => {
   const initialTokenData = localStorage.getItem("tokenData");
   const initialToken = initialTokenData
     ? JSON.parse(initialTokenData)
-    : { token: "" , email: ""};
+    : { token: "", email: "" };
+
   const [token, setToken] = useState(initialToken.token);
   const [email, setEmail] = useState(initialToken.email);
-
-  // console.log(initialToken);
+  console.log(initialToken);
   const userIsLoggedIn = !!token;
   // console.log("userIsLoggedIn", userIsLoggedIn)
 
   const loginHandler = (tokenData) => {
     setToken(tokenData.token);
-    setEmail(tokenData.email)
+    setEmail(tokenData.email);
     localStorage.setItem("tokenData", JSON.stringify(tokenData));
   };
 
   const logoutHandler = () => {
     setToken(null);
-    setEmail(null)
+    setEmail(null);
     localStorage.removeItem("tokenData");
   };
 
