@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import "./Profile.css";
 import { FaGithub } from "react-icons/fa";
@@ -20,6 +20,36 @@ const Profile = () => {
     setPhotoURL(event.target.value);
   };
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(
+          `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyA_AYVFYK_Apy1tAbRKzko3LPCcqO4Kf6w`,
+          {
+            method: "POST",
+            body: JSON.stringify({ idToken: idToken }),
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          const user = data.users[0];
+
+          setName(user.displayName);
+          setPhotoURL(user.photoUrl);
+        } else {
+          console.error("Error Edit user details");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (authCtx.isLoggedIn) {
+      fetchUserData();
+    }
+  }, [authCtx.isLoggedIn, idToken]);
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -47,12 +77,6 @@ const Profile = () => {
       console.log(data.error.message);
       alert(data.error.message);
     }
-
-    const cont = {
-      name: name,
-      photo: photoURL,
-    };
-    console.log(cont);
   };
 
   return (
