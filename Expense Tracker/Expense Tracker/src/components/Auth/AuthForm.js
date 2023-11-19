@@ -200,7 +200,7 @@ const AuthForm = () => {
             {isLogin ? "Login" : "SignUp"}
           </Button>
         </div>
-        <Link to="/forgotPassword" variant="link">{isLogin && "Forgot password"}</Link>
+        <Link to="/forgotPassword" variant="link" style={{textDecoration: "none"}}>{isLogin && "Forgot password"}</Link>
       </Form>
       <div className="actions">
         <Button

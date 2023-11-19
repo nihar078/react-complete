@@ -31,6 +31,7 @@ const ForgotPassword = () => {
     );
     if (response.ok) {
       alert("Verification code is sent in your email. Please check your email");
+      navigate("/auth")
     } else {
       const data = await response.json();
       console.log(data.error.message);
@@ -39,8 +40,8 @@ const ForgotPassword = () => {
   };
 
   return (
-    <Container>
-      <Form className="form" onSubmit={forgotSubmitHandler}>
+    <Container style={{textAlign: "center"}}>
+      <Form className="frm" onSubmit={forgotSubmitHandler}>
         <h2>Reset Password</h2>
         <Form.Group className="control">
           <Form.Label>Email</Form.Label>

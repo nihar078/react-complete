@@ -1,5 +1,6 @@
 .container {
     display: block;
+    /* margin-left: 40px auto; */
     margin: 30px auto;
     padding-left: 300px;
   }

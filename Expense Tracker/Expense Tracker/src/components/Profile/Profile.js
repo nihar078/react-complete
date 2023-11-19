@@ -80,7 +80,7 @@ const Profile = () => {
   };
 
   return (
-    <Container className="container">
+    <Container className="container" style={{marginLeft: "210px"}}>
       <div className="contact">
         <h1>Contact Details</h1>
         <Button
