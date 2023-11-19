@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Container, Form, Alert } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthContext from "../../store/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./AuthForm.css";
 
 const AuthForm = () => {
@@ -200,7 +200,7 @@ const AuthForm = () => {
             {isLogin ? "Login" : "SignUp"}
           </Button>
         </div>
-        <Button variant="link">{isLogin && "Forgot password"}</Button>
+        <Link to="/forgotPassword" variant="link">{isLogin && "Forgot password"}</Link>
       </Form>
       <div className="actions">
         <Button

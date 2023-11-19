@@ -6,6 +6,7 @@ import Header from "./components/Layout/Header";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Profile from "./components/Profile/Profile";
 import MainNavigation from "./components/Layout/MainNavigation";
+import ForgotPassword from "./components/Auth/ForgotPassword";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
@@ -41,6 +42,7 @@ const App = () => {
             }
           />
         )}
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Fragment>
