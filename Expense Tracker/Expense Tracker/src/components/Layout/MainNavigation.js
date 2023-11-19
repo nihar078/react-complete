@@ -15,7 +15,7 @@ const MainNavigation = () => {
   return (
     <div>
       <header>
-        <Navbar bg="white">
+        <Navbar bg="light" style={{justifyContent : "space-between"}}>
           <Nav>
             <NavLink
               to="/home"
@@ -39,6 +39,7 @@ const MainNavigation = () => {
           )}
         </Navbar>
       </header>
+      {/* <hr /> */}
     </div>
   );
 };
