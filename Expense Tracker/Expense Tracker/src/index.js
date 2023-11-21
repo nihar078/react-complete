@@ -8,12 +8,15 @@ import App from "./App";
 //React Bootstrap Configuration
 import "../node_modules/bootstrap/dist/js/bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import { ExpenseContextProvider } from "./store/ExpenseContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthContextProvider>
     <BrowserRouter>
-      <App />
+      <ExpenseContextProvider>
+        <App />
+      </ExpenseContextProvider>
     </BrowserRouter>
   </AuthContextProvider>
 );

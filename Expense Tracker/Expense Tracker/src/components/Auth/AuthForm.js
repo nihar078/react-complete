@@ -167,7 +167,7 @@ const AuthForm = () => {
         </Form.Group>
         <Form.Group className="control" controlId="formGroupPassword">
           <Form.Label>Password:</Form.Label>
-          <div style={{position: "relative", display: "flex"}}>
+          <div style={{ position: "relative", display: "flex" }}>
             <Form.Control
               type={showPassword ? "text" : "password"}
               required

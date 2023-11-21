@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import ExpenseItem from "./ExpenseItem";
+import ExpenseContext from "../../store/ExpenseContext";
 
 
 const ExpenseList = (props) =>{
+   const expenseCtx =  useContext(ExpenseContext)
     return(
         <div style={{textAlign: "center"}}>
             <ul>
-                {props.lists.map((expense) => (
+                {expenseCtx.expenses.map((expense) => (
                     <ExpenseItem
                     key={expense.id}
                     category={expense.category}

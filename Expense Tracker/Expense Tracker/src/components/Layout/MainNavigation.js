@@ -33,7 +33,7 @@ const MainNavigation = () => {
             </NavLink>
           </Nav>
           {authCtx.isLoggedIn && (
-            <Button onClick={logoutHandler} type="button">
+            <Button onClick={logoutHandler} type="button" style={{marginRight: "3px"}}>
               Logout
             </Button>
           )}
