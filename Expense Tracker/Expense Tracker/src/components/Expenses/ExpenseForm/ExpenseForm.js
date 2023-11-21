@@ -32,6 +32,9 @@ const ExpenseForm = (props) => {
         description: description,
         category: category
     }
+    setAmount("")
+    setCategory("")
+    setDescription("")
     // console.log(expenseData)
     props.addExpenseData(expenseData)
   }
@@ -52,14 +55,14 @@ const ExpenseForm = (props) => {
           </div>
           <div className="new-expense__control">
             <select value={category} onChange={categoryChangeHandler}>
-              <option value="" disabled selected hidden>
+              <option value="" disabled hidden>
                 Expense Category
               </option>
-              <option>Food</option>
-              <option>Petrol</option>
-              <option>Clothing</option>
-              <option>Other</option>
-              <option>Salary</option>
+              <option value="Food">Food</option>
+              <option value="Petrol">Petrol</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Other">Other</option>
+              <option value="Salary">Salary</option>
             </select>
           </div>
         </div>

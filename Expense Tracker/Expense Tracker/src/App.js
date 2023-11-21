@@ -27,8 +27,8 @@ const App = () => {
             <>
               {authCtx.isLoggedIn && (
                 <>
-                  {" "}
-                  <Header /> <ExpenseTracker />
+                  <Header />
+                  <Navigate to="/expense" />
                 </>
               )}
               {!authCtx.isLoggedIn && <Navigate to="/auth" />}
@@ -49,6 +49,15 @@ const App = () => {
             }
           />
         )}
+        {authCtx.isLoggedIn && (<Route
+          path="/expense"
+          element={
+            <>
+              <Header /> 
+              <ExpenseTracker />
+            </>
+          }
+        />)}
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
