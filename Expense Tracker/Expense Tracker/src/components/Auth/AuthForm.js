@@ -42,11 +42,15 @@ const AuthForm = () => {
     event.preventDefault();
     // setIsLoading(true);
     if (!isLogin) {
-      if (!isLogin && confirmPassword !== password && confirmPassword.length > 0) {
+      if (
+        !isLogin &&
+        confirmPassword !== password &&
+        confirmPassword.length > 0
+      ) {
         setShowAlert(true);
-        return
+        return;
       }
-      setShowAlert(false)
+      setShowAlert(false);
       const response = await fetch(
         `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA_AYVFYK_Apy1tAbRKzko3LPCcqO4Kf6w`,
         {
@@ -65,7 +69,7 @@ const AuthForm = () => {
         const data = await response.json();
         // console.log(data);
         console.log("successfully signup", data);
-        alert("successfuly signup.. try to login")
+        alert("successfuly signup.. try to login");
       } else {
         const data = await response.json();
         alert(data.error.message);
@@ -78,38 +82,36 @@ const AuthForm = () => {
       setEmail("");
       setConfirmPassword("");
       setPassword("");
-    }
-
-    else {
-    // setShowAlert(false);
-
-    //   try {
-    const response = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA_AYVFYK_Apy1tAbRKzko3LPCcqO4Kf6w`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (response.ok) {
-      //   setIsLoading(true);
-      const data = await response.json();
-      console.log("succesfully login", data);
-      authCtx.login({token: data.idToken, email: email});
-      navigate("/home");
     } else {
-      const data = await response.json();
-      alert(data.error.message);
-    }
-    setEmail("");
-    setPassword("");
+      // setShowAlert(false);
+
+      //   try {
+      const response = await fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA_AYVFYK_Apy1tAbRKzko3LPCcqO4Kf6w`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        //   setIsLoading(true);
+        const data = await response.json();
+        console.log("succesfully login", data);
+        authCtx.login({ token: data.idToken, email: email });
+        navigate("/home");
+      } else {
+        const data = await response.json();
+        alert(data.error.message);
+      }
+      setEmail("");
+      setPassword("");
     }
 
     // setShowAlert(false);
@@ -165,19 +167,21 @@ const AuthForm = () => {
         </Form.Group>
         <Form.Group className="control" controlId="formGroupPassword">
           <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type={showPassword ? "text" : "password"}
-            required
-            value={password}
-            onChange={passwordHandler}
-          />
-          <Button
-            className="password-tooggle"
-            variant="link"
-            onClick={togglePasswordVisibility}
-          >
-            {showPassword ? <FaEye /> : <FaEyeSlash />}
-          </Button>
+          <div style={{position: "relative", display: "flex"}}>
+            <Form.Control
+              type={showPassword ? "text" : "password"}
+              required
+              value={password}
+              onChange={passwordHandler}
+            />
+            <Button
+              className="password-tooggle"
+              variant="link"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </Button>
+          </div>
         </Form.Group>
         {!isLogin && (
           <Form.Group className="control" controlId="fromGroupConfirmPassword">
@@ -200,7 +204,13 @@ const AuthForm = () => {
             {isLogin ? "Login" : "SignUp"}
           </Button>
         </div>
-        <Link to="/forgotPassword" variant="link" style={{textDecoration: "none"}}>{isLogin && "Forgot password"}</Link>
+        <Link
+          to="/forgotPassword"
+          variant="link"
+          style={{ textDecoration: "none" }}
+        >
+          {isLogin && "Forgot password"}
+        </Link>
       </Form>
       <div className="actions">
         <Button

@@ -16,7 +16,7 @@ export const AuthContextProvider = (props) => {
 
   const [token, setToken] = useState(initialToken.token);
   const [email, setEmail] = useState(initialToken.email);
-  console.log(initialToken);
+  // console.log(initialToken);
   const userIsLoggedIn = !!token;
   // console.log("userIsLoggedIn", userIsLoggedIn)
 

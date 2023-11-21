@@ -7,6 +7,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Profile from "./components/Profile/Profile";
 import MainNavigation from "./components/Layout/MainNavigation";
 import ForgotPassword from "./components/Auth/ForgotPassword";
+import ExpenseTracker from "./components/Expenses/ExpenseTracker";
+// import ExpenseTracker from "./components/Expenses/ExpenseTracker";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
@@ -18,12 +20,17 @@ const App = () => {
       {/* {!authCtx.isLoggedIn && <AuthForm />} */}
       {/* {authCtx.isLoggedIn && <Header />} */}
       <Routes>
-        <Route path="/" element={<Navigate to="home" />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route
           path="/home"
           element={
             <>
-              {authCtx.isLoggedIn && <Header />}
+              {authCtx.isLoggedIn && (
+                <>
+                  {" "}
+                  <Header /> <ExpenseTracker />
+                </>
+              )}
               {!authCtx.isLoggedIn && <Navigate to="/auth" />}
             </>
           }
