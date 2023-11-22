@@ -11,8 +11,9 @@ export const ExpenseContextProvider = (props) => {
   const [expenses, setExpenses] = useState([]);
   const authCtx = useContext(AuthContext);
 
-  const userEmail = authCtx.email.replace(/[@.]/g, "");
-  console.log(userEmail);
+  //   const userEmail = authCtx.email.replace(/[@.]/g, "");
+  //   console.log(userEmail);
+  const userEmail = authCtx.email ? authCtx.email.replace(/[@.]/g, "") : "";
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
@@ -21,16 +22,17 @@ export const ExpenseContextProvider = (props) => {
         );
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
+        //   console.log(data);
 
-          const expenseData = [];
-          for (const key in data) {
-            expenseData.push({
-              id: key,
-              ...data[key],
-            });
-          }
-          setExpenses(expenseData);
+            const expenseData = [];
+            for (const key in data) {
+              expenseData.push({
+                id: key,
+                ...data[key],
+              });
+            }
+            // console.log(expenseData)
+            setExpenses(expenseData);
         } else {
           console.error("Error fetching Data");
         }
@@ -57,12 +59,15 @@ export const ExpenseContextProvider = (props) => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         const createExpense = { id: data.name, ...expense };
-        setExpenses([...expense, createExpense]);
+        // console.log(createExpense)
+        setExpenses([...expenses, createExpense]);
       }
-    } catch (error) {}
-    setExpenses(expense);
+    } catch (error) {
+        console.error("Error adding data")
+    }
+    // setExpenses(expense);
   };
   const expenseContextValue = {
     expenses: expenses,

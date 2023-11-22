@@ -10,11 +10,12 @@ const Expenses = ()=>{
     expenseCtx.expenses.forEach((expense) => {
         totalAmount += Number(expense.amount)
     })
+    const formattedTotalAmount = totalAmount.toFixed(2)
     return(
         <div className="expense">
             <h4 style={{textAlign: "center"}}>All Expenses</h4>
             <ExpenseList />
-            <h5 style={{textAlign: "right"}}>Total Amount Rs. {totalAmount}</h5>
+            <h5 style={{textAlign: "right"}}>Total Amount Rs. {formattedTotalAmount}</h5>
         </div>
     )
 }

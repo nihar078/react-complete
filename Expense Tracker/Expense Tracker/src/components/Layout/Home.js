@@ -53,16 +53,16 @@
 // export default Home;
 
 
-import React, { useContext, useState } from "react";
-import AuthContext from "../../store/AuthContext";
+import React, { useState } from "react";
+// import AuthContext from "../../store/AuthContext";
 import { NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import VerificationEmail from "../Profile/VerificationEmail";
 import "./Home.css";
 
 const Home = () => {
-  const authCtx = useContext(AuthContext);
-  console.log(authCtx)
+  // const authCtx = useContext(AuthContext);
+  // console.log(authCtx)
 
   const [open, setOpen] = useState(false);
 
