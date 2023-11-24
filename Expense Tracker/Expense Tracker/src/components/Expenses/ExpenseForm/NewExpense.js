@@ -9,13 +9,14 @@ const NewExpense = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   const saveExpenseDataHandler = (enteredExpenseData) => {
-    const expenseData = {
-      ...enteredExpenseData,
-      Id: Math.random().toString(),
-      date: new Date(),
-    };
+    // const expenseData = {
+    //   ...enteredExpenseData,
+    //   // Id: Math.random().toString(),
+    //   date: new Date(),
+    // };
     // props.onAdd(expenseData)
-    expenseCtx.addExpense(expenseData);
+    // expenseCtx.addExpense(expenseData)
+    expenseCtx.addExpense(enteredExpenseData);
   };
   const startEditingHandler = () => {
     setIsEditing(true);

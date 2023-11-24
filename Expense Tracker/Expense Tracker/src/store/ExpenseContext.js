@@ -5,6 +5,7 @@ const ExpenseContext = createContext({
   expenses: [],
   addExpense: (expense) => {},
   removeExpense: (id) => {},
+  editExpense: (id, updatedExpense) => {},
 });
 
 export const ExpenseContextProvider = (props) => {
@@ -63,15 +64,56 @@ export const ExpenseContextProvider = (props) => {
         const createExpense = { id: data.name, ...expense };
         // console.log(createExpense)
         setExpenses([...expenses, createExpense]);
+        // setExpenses((prevExpenses) => [...prevExpenses, createExpense])
       }
     } catch (error) {
         console.error("Error adding data")
     }
     // setExpenses(expense);
   };
+
+  const removeExpenseHandler = async(id) =>{
+    const response = await fetch(`https://react-expense-tracker-ed111-default-rtdb.firebaseio.com/user${userEmail}/${id}.json`, {
+        method: "DELETE"
+    })
+    if(response.ok){
+        setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== id));
+        console.log("Expense Delete Succesfully from the server")
+    }
+    else{
+        console.error("something went wrong in delete")
+    }
+  }
+  const editExpenseHandler = async (id, updatedExpense) => {
+    try {
+      const response = await fetch(
+        `https://react-expense-tracker-ed111-default-rtdb.firebaseio.com/user${userEmail}/${id}.json`,
+        {
+          method: "PUT", // Use PUT/PATCH method for updating existing data
+          body: JSON.stringify(updatedExpense),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        console.log("Expense updated successfully on the server");
+        setExpenses((prevExpenses) =>
+        prevExpenses.map((expense) => (expense.id === id ? { ...expense, ...updatedExpense } : expense))
+      );
+      } else {
+        console.error("Error updating expense on the server");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const expenseContextValue = {
     expenses: expenses,
     addExpense: addToExpenseHandler,
+    removeExpense: removeExpenseHandler,
+    editExpense: editExpenseHandler,
   };
 
   return (

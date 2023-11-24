@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
+
 //   const[isExpense , setIsExpense] = useState(true);
   const [amount , setAmount] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState ("")
 
+
 //   const switchAuthModeHandler = () => {
 //     setIsExpense((prevState) => !prevState);
 //   };
+
+useEffect(() => {
+    if (props.editMode && props.editData) {
+      // Set form fields with expense details if in edit mode and editData is defined
+      setAmount(props.editData.amount);
+      setDescription(props.editData.description);
+      setCategory(props.editData.category);
+    }
+  }, [props.editMode, props.editData]);
 
   const amountChangeHandler = (event) =>{
     setAmount(event.target.value)
@@ -30,19 +41,29 @@ const ExpenseForm = (props) => {
     const expenseData = {
         amount: amount,
         description: description,
-        category: category
+        category: category,
+        // Id: Math.random().toString(),
+        date: new Date(),
     }
     setAmount("")
     setCategory("")
     setDescription("")
-    // console.log(expenseData)
-    props.addExpenseData(expenseData)
+    console.log(expenseData)
+    // props.addExpenseData(expenseData)
+    if (props.editMode) {
+      // If in edit mode, call the editExpenseData function
+      props.addEditExpenseData( expenseData);
+    } else {
+      // Otherwise, call the addExpenseData function
+      props.addExpenseData(expenseData);
+    }
   }
 
 
   return (
     <div>
       <h1>Expense</h1>
+      {/* <h1>{props.editMode ? "Edit Expense" : "Add Expense"}</h1> */}
       <form onSubmit={expensesubmitHandler}>
         <div className="new-expense__controls">
           <div className="new-expense__control">
@@ -50,10 +71,11 @@ const ExpenseForm = (props) => {
             <input type="number" min="0.01" step="0.01" value={amount} onChange={amountChangeHandler}/>
           </div>
           <div className="new-expense__control">
-            <label>Description</label>
+            <label>Description:</label>
             <input type="text" required  value={description} onChange={descriptionChangeHandler}/>
           </div>
           <div className="new-expense__control">
+            <label>Category:</label>
             <select value={category} onChange={categoryChangeHandler}>
               <option value="" disabled hidden>
                 Expense Category
@@ -67,14 +89,16 @@ const ExpenseForm = (props) => {
           </div>
         </div>
         <div style={{ textAlign: "right"}}>
-          <Button type="submit" onClick={props.onCancel} variant="secondary" style={{marginRight: "4px"}}>
+          {props.editMode ? (<Button type="submit" onClick={props.onCancel} variant="secondary" style={{marginRight: "4px"}}>
+            Close
+          </Button>):(<Button type="submit" onClick={props.onCancel} variant="secondary" style={{marginRight: "4px"}}>
             Cancel
-          </Button>
+          </Button>)}
           <Button variant="primary" type="submit">
-            Add Expense
+            {/* Add Expense */}
+            {props.editMode ? "Save Changes" : "Add Expense"}
           </Button>
         </div>
-        {/* <Button variant="outline-info" onClick={switchAuthModeHandler}>{isExpense ? "Switch to Income" : "Switch to Expense"}</Button> */}
       </form>
     </div>
   );

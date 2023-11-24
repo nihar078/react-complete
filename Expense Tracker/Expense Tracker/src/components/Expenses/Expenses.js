@@ -14,6 +14,7 @@ const Expenses = ()=>{
     return(
         <div className="expense">
             <h4 style={{textAlign: "center"}}>All Expenses</h4>
+            <hr/>
             <ExpenseList />
             <h5 style={{textAlign: "right"}}>Total Amount Rs. {formattedTotalAmount}</h5>
         </div>
