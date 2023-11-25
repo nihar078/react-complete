@@ -1,0 +1,15 @@
+{
+  "name": "integrating-redux-with-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "integrating_redux.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.2.1"
+  }
+}
