@@ -85,7 +85,7 @@ const AuthForm = () => {
         <Form.Control type="password" required ref={passwordInputRef} />
       </Form.Group>
       <div className="actions">
-        <Button type="submit">{isLogin ? "Login" : "Create Account"}</Button>
+        <Button type="submit" variant="primary">{isLogin ? "Login" : "Create Account"}</Button>
         <Button className="toggle" onClick={switchAuthModeHandler}>
           {isLogin ? "Create new account" : "Login with existing account"}
         </Button>

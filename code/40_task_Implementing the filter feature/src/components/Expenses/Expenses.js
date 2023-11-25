@@ -30,6 +30,16 @@ const Expenses = (props) => {
     ));
   }
 
+  // filterChangeHandler.length === 0 ? <p>No expenses found.</p> : filteredExpenses.map((expense) => (
+  //       <ExpenseItem
+  //         key={expense.id}
+  //         title={expense.title}
+  //         amount={expense.amount}
+  //         date={expense.date}
+  //         locationOFExpenditure={expense.locationOFExpenditure}
+  //       />
+  //     ));
+
   return (
     <div>
       <Card className="expenses">
@@ -38,6 +48,19 @@ const Expenses = (props) => {
           onChangeFilter={filterChangeHandler}
         />
         {expensesContent}
+        {/* {filterChangeHandler.length === 0 ? (
+          <p>No expenses found.</p>
+        ) : (
+          filteredExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+              locationOFExpenditure={expense.locationOFExpenditure}
+            />
+          ))
+        )} */}
       </Card>
     </div>
   );

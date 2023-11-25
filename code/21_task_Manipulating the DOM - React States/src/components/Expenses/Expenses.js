@@ -31,6 +31,7 @@ const Expenses = (props) => {
       {/* or */}
       {props.items.map((expense) => (
         <ExpenseItem
+          key={expense.id}
           title={expense.title}
           amount={expense.amount}
           date={expense.date}
@@ -39,6 +40,6 @@ const Expenses = (props) => {
       ))}
     </Card>
   );
-}
+};
 
 export default Expenses;

@@ -50,6 +50,16 @@ const CartProvider = (props) => {
       }
       updateItems(newCartItems);
     }
+
+    const inventoryItemIndex = inventoryItems.findIndex(
+      (inventoryItem) => inventoryItem.id === id
+    );
+
+    if (inventoryItemIndex > -1) {
+      const updatedInventoryItems = [...inventoryItems];
+      updatedInventoryItems[inventoryItemIndex].quantity += 1;
+      setInventoryItems(updatedInventoryItems);
+    }
   };
 
   const cartContext = {
