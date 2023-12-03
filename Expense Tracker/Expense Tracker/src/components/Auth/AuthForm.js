@@ -1,13 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Container, Form, Alert } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import AuthContext from "../../store/AuthContext";
+// import AuthContext from "../../store/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import "./AuthForm.css";
+import { authActions } from "../../store/authSl";
 
 const AuthForm = () => {
   console.log("AuthForm rendered");
-  const authCtx = useContext(AuthContext);
+  // const authCtx = useContext(AuthContext);
+  // console.log(authCtx)
+  const dispatch = useDispatch()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -104,7 +108,8 @@ const AuthForm = () => {
         //   setIsLoading(true);
         const data = await response.json();
         console.log("succesfully login", data);
-        authCtx.login({ token: data.idToken, email: email });
+        // authCtx.login({ token: data.idToken, email: email });
+        dispatch(authActions.login({ token: data.idToken, email: email }))
         navigate("/home");
       } else {
         const data = await response.json();

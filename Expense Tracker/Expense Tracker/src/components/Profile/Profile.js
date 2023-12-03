@@ -1,15 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import "./Profile.css";
 import { FaGithub } from "react-icons/fa";
 import { PiGlobe } from "react-icons/pi";
-import AuthContext from "../../store/AuthContext";
+import { useSelector } from "react-redux";
+// import AuthContext from "../../store/AuthContext";
 
 const Profile = () => {
   const [name, setName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
-  const authCtx = useContext(AuthContext);
-  const idToken = authCtx.token;
+  // const authCtx = useContext(AuthContext);
+  // const idToken = authCtx.token;
+  // console.log(idToken)
+  const authRdx = useSelector((state) => state.auth)
+  const idToken = useSelector((state) => state.auth.token);
   // console.log(idToken)
 
   const nameHandler = (event) => {
@@ -46,10 +50,10 @@ const Profile = () => {
         console.error(error);
       }
     };
-    if (authCtx.isLoggedIn) {
+    if (authRdx.isLoggedIn) {
       fetchUserData();
     }
-  }, [authCtx.isLoggedIn, idToken]);
+  }, [authRdx.isLoggedIn, idToken]);
   const submitHandler = async (event) => {
     event.preventDefault();
 

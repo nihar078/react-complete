@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Button, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import AuthContext from "../../store/AuthContext";
+// import AuthContext from "../../store/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/authSl";
 
 const MainNavigation = () => {
-  const authCtx = useContext(AuthContext);
+  // const authCtx = useContext(AuthContext);
+  const authRdx = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
   // const navigate = useNavigate()
   
   const logoutHandler = () => {
-    authCtx.logout();
+    // authCtx.logout();
+    dispatch(authActions.logout())
     // navigate("/auth");
   };
 
@@ -29,10 +34,11 @@ const MainNavigation = () => {
               className="mx-3 px-2"
               style={{ textDecoration: "none" }}
             >
-              {!authCtx.isLoggedIn && "Login"}
+              {/* {!authCtx.isLoggedIn && "Login"} */}
+              {!authRdx.isLoggedIn && "Login"}
             </NavLink>
           </Nav>
-          {authCtx.isLoggedIn && (
+          {authRdx.isLoggedIn && (
             <Button onClick={logoutHandler} type="button" style={{marginRight: "3px"}}>
               Logout
             </Button>

@@ -43,7 +43,7 @@ useEffect(() => {
         description: description,
         category: category,
         // Id: Math.random().toString(),
-        date: new Date(),
+        date: new Date().toISOString(),
     }
     setAmount("")
     setCategory("")
