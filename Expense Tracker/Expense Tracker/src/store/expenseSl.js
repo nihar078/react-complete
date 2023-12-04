@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialExpenseState = { expenses: [] };
+const initialExpenseState = { expenses: [], isPremiumActivated: false };
 
 const expenseSlice = createSlice({
   name: "expense",
@@ -33,6 +33,11 @@ const expenseSlice = createSlice({
           ? { ...expense, ...action.payload.updatedExpense }
           : expense
       );
+    },
+    activatePremium(state, action) {
+      // console.log(action.payload)
+      // state.isPremiumActivated = action.payload   ///if use action on argumrnt then use it 
+      state.isPremiumActivated = !state.isPremiumActivated;
     },
   },
 });
