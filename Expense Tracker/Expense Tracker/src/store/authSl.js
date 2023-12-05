@@ -4,7 +4,8 @@ const localState =  JSON.parse(localStorage.getItem("tokenData"))
 const initialAuthState = {
   token: localState ? localState.token : "",
   email: localState ? localState.email : "",
-  isLoggedIn: !!localState.token
+  isLoggedIn: localState ? !!localState.token : ""
+  // isLoggedIn: false
 };
 
 const authSlice = createSlice({
@@ -22,6 +23,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.token = "";
       state.email = "";
+      localStorage.removeItem("tokenData")
     },
   },
 });

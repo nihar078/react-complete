@@ -44,7 +44,7 @@ const MainNavigation = () => {
               {!authRdx.isLoggedIn && "Login"}
             </NavLink>
           </Nav>
-          {isPremiumActivated && (
+          {isPremiumActivated && authRdx.isLoggedIn &&(
             <Button variant="outline-info" onClick={toggleThemeHandler}>Change Theme</Button>
           )}
           {authRdx.isLoggedIn && (

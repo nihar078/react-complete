@@ -172,16 +172,16 @@ const AuthForm = () => {
         </Form.Group>
         <Form.Group className="control" controlId="formGroupPassword">
           <Form.Label>Password:</Form.Label>
-          <div style={{ position: "relative", display: "flex" }}>
+          <div style={{ position: "relative", display: "flex" , alignItems: "center"}}>
             <Form.Control
               type={showPassword ? "text" : "password"}
               required
               value={password}
               onChange={passwordHandler}
             />
-            <Button
-              className="password-tooggle"
+            <Button 
               variant="link"
+              style={{ position: "absolute",  right: "1px"}}
               onClick={togglePasswordVisibility}
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
