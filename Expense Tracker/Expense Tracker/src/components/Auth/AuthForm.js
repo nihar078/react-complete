@@ -11,7 +11,7 @@ const AuthForm = () => {
   console.log("AuthForm rendered");
   // const authCtx = useContext(AuthContext);
   // console.log(authCtx)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -109,7 +109,7 @@ const AuthForm = () => {
         const data = await response.json();
         console.log("succesfully login", data);
         // authCtx.login({ token: data.idToken, email: email });
-        dispatch(authActions.login({ token: data.idToken, email: email }))
+        dispatch(authActions.login({ token: data.idToken, email: email }));
         navigate("/home");
       } else {
         const data = await response.json();
@@ -172,31 +172,46 @@ const AuthForm = () => {
         </Form.Group>
         <Form.Group className="control" controlId="formGroupPassword">
           <Form.Label>Password:</Form.Label>
-          <div style={{ position: "relative", display: "flex" , alignItems: "center"}}>
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Form.Control
               type={showPassword ? "text" : "password"}
               required
               value={password}
               onChange={passwordHandler}
             />
-            <Button 
+            <Button
               variant="link"
-              style={{ position: "absolute",  right: "1px"}}
+              style={{ position: "absolute", right: "1px" }}
               onClick={togglePasswordVisibility}
             >
-              {showPassword ? <FaEye /> : <FaEyeSlash />}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </Button>
           </div>
         </Form.Group>
         {!isLogin && (
           <Form.Group className="control" controlId="fromGroupConfirmPassword">
             <Form.Label>Confirm Password:</Form.Label>
-            <Form.Control
-              type="password"
-              required
-              value={confirmPassword}
-              onChange={confirmPasswordHandler}
-            />
+            <div style={{display: "flex", position: "relative", alignItems: "center"}}>
+              <Form.Control
+                type="password"
+                required
+                value={confirmPassword}
+                onChange={confirmPasswordHandler}
+              />
+              <Button
+                variant="link"
+                style={{ position: "absolute", right: "1px" }}
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </Button>
+            </div>
           </Form.Group>
         )}
         {showAlert && (
