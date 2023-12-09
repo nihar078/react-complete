@@ -8,7 +8,7 @@ import "./AuthForm.css";
 import { authActions } from "../../store/authSl";
 
 const AuthForm = () => {
-  console.log("AuthForm rendered");
+  // console.log("AuthForm rendered");
   // const authCtx = useContext(AuthContext);
   // console.log(authCtx)
   const dispatch = useDispatch();
@@ -107,7 +107,7 @@ const AuthForm = () => {
       if (response.ok) {
         //   setIsLoading(true);
         const data = await response.json();
-        console.log("succesfully login", data);
+        // console.log("succesfully login", data);
         // authCtx.login({ token: data.idToken, email: email });
         dispatch(authActions.login({ token: data.idToken, email: email }));
         navigate("/home");

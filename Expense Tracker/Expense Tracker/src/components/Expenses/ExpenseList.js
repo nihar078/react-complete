@@ -25,7 +25,7 @@ const ExpenseList = () => {
         );
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
+          // console.log(data);
 
           const expenseData = [];
           for (const key in data) {
@@ -34,7 +34,7 @@ const ExpenseList = () => {
               ...data[key],
             });
           }
-          console.log(expenseData);
+          // console.log(expenseData);
           dispatch(expenseActions.setExpense(expenseData));
         } else {
           console.error("Error fetching Data");
@@ -112,7 +112,7 @@ const ExpenseList = () => {
     }
   };
 
-  console.log(expenseRdx.expenses);
+  // console.log(expenseRdx.expenses);
 
   return (
     <div>
