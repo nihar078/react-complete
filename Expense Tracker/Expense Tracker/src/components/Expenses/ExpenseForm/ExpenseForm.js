@@ -67,16 +67,16 @@ useEffect(() => {
       <form onSubmit={expensesubmitHandler}>
         <div className="new-expense__controls">
           <div className="new-expense__control">
-            <label>Amount: </label>
-            <input type="number" min="0.01" step="0.01" value={amount} onChange={amountChangeHandler}/>
+            <label htmlFor="amount">Amount: </label>
+            <input type="number" id="amount" min="0.01" step="0.01" value={amount} onChange={amountChangeHandler}/>
           </div>
           <div className="new-expense__control">
-            <label>Description:</label>
-            <input type="text" required  value={description} onChange={descriptionChangeHandler}/>
+            <label htmlFor="description">Description:</label>
+            <input type="text" id="description" required  value={description} onChange={descriptionChangeHandler}/>
           </div>
           <div className="new-expense__control">
-            <label>Category:</label>
-            <select value={category} onChange={categoryChangeHandler}>
+            <label htmlFor="category">Category:</label>
+            <select id= "category" value={category} onChange={categoryChangeHandler}>
               <option value="" disabled hidden>
                 Expense Category
               </option>
