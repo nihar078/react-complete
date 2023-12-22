@@ -1,0 +1,12 @@
+.compose{
+    border-radius: 2rem;
+    font-size: 20px;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+.option{
+    border-radius: 2rem;
+    font-size: 20px;
+    font-weight: 600;
+    width: 125px;
+}

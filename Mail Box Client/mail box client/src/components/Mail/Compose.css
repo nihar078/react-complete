@@ -1,0 +1,78 @@
+/* Add this to your CSS or SCSS file
+.gmail-wrapper {
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+  } */
+  
+
+  
+  /* .gmail-toolbar {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    padding: 5px;
+  } */
+  
+
+
+   /* .mainContainer {
+    border: 2px solid black;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+    height: 300px;
+    width: 90%;
+
+  }
+  .Space{
+    margin-right: 2.8rem;
+  }
+  .Space1 {
+    margin-right: 0.5rem;
+  }
+  .txtarea{
+    margin-left: 4rem;
+  }
+  .editors{
+    margin-left: 4rem;
+  }
+  .stacks{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btnSend{
+    margin-left: 4rem;
+    margin-top: -4rem;
+  }
+  .log1{
+    margin-left: 4rem;
+  } */
+
+  .format{
+    display: "flex";
+  }
+  .format input{
+    border: none;
+    outline: none;
+  }
+  .format input.format:hover {
+    border: none;
+  }
+  
+  .editor-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  
+   /* This will reverse the direction of the content */
+}
+
+.gmail-editor {
+  min-height: 200px;
+}

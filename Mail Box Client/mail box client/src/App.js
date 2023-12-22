@@ -4,6 +4,9 @@ import MainNavigation from "./components/Layout/MainNavigation";
 import Header from "./components/Layout/Header";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
+import ComposeEmail from "./components/Mail/Compose";
+import Inbox from "./components/Mail/Inbox";
+import SentBox from "./components/Mail/SentBox";
 
 function App() {
   const authRdx = useSelector((state) => state.auth);
@@ -18,12 +21,42 @@ function App() {
           path="/home"
           element={
             <>
-              {authRdx.isLoggedIn && <Header />}
+              {authRdx.isLoggedIn && (
+                <>
+                  <Header />
+                  {/* <Navigate to="/compose" />{" "} */}
+                </>
+              )}
               {!authRdx.isLoggedIn && <Navigate to="/auth" />}
             </>
           }
         />
         <Route path="/auth" element={<AuthForm />} />
+        {/* {authRdx.isLoggedIn && (
+          <Route
+            path="/compose"
+            element={
+              <>
+                <Header />
+                <ComposeEmail />
+              </>
+            }
+          />
+        )} */}
+        <Route path="/inbox" element={<Inbox />} />
+        {/* <Route
+          path="/compose"
+          element={
+            authRdx.isLoggedIn && (
+              <>
+                <Header />
+                <ComposeEmail />
+              </>
+            )
+          }
+        /> */}
+        <Route path="/compose" element={<ComposeEmail />}/>
+        <Route path="/sent" element={<SentBox />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       {/* <Header />
