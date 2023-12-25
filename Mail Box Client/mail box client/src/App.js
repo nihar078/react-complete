@@ -24,7 +24,8 @@ function App() {
               {authRdx.isLoggedIn && (
                 <>
                   <Header />
-                  {/* <Navigate to="/compose" />{" "} */}
+                  {/* <Navigate to="/inbox" /> */}
+                  <Inbox />
                 </>
               )}
               {!authRdx.isLoggedIn && <Navigate to="/auth" />}
@@ -43,7 +44,16 @@ function App() {
             }
           />
         )} */}
-        <Route path="/inbox" element={<Inbox />} />
+        {authRdx.isLoggedIn && <Route
+          path="/inbox"
+          element={
+            <Navigate to="/home"/>
+            // <>
+            //   <Header />
+            //   <Inbox />
+            // </>
+          }
+        />}
         {/* <Route
           path="/compose"
           element={
@@ -55,7 +65,7 @@ function App() {
             )
           }
         /> */}
-        <Route path="/compose" element={<ComposeEmail />}/>
+        <Route path="/compose" element={<ComposeEmail />} />
         <Route path="/sent" element={<SentBox />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

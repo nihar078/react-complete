@@ -60,6 +60,7 @@
   .format input{
     border: none;
     outline: none;
+    width: 90%;
   }
   .format input.format:hover {
     border: none;
