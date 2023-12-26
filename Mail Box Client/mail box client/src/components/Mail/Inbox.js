@@ -1,45 +1,63 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import "./Inbox.css";
 import { Stack } from "react-bootstrap";
 import EmailBox from "./EmailBox";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { receiveMailHandler } from "../../store/mailActions";
 
 const Inbox = () => {
   // Implement logic to fetch and display received emails
-  const [receivedEmails, setReceivedEmails] = useState([]);
+  // const [receivedEmails, setReceivedEmails] = useState([]);
+
   const userEmail = useSelector((state) => state.auth.email);
   const fromEmail = userEmail ? userEmail.replace(/[@.]/g, "") : "";
+  const receivedEmails = useSelector((state) => state.mail.reciveMail);
+  const dispatch = useDispatch();
+  console.log(receivedEmails)
+  
+
   useEffect(() => {
     const fetchReceivedEmails = async () => {
       // Fetch received emails from Firebase
-      const response = await fetch(
-        `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/inbox.json`
-      );
+    //   const response = await fetch(
+    //     `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/inbox.json`
+    //   );
 
-      if (response.ok) {
-        const data = await response.json();
-        // console.log(data);
-        // console.log("id" ,data.id)
-        // for(const key in data){
-        //   setReceivedEmails({id: key, ...data[key]})
-        // }
+    //   if (response.ok) {
+    //     const data = await response.json();
+    //     // console.log(data);
+    //     // console.log("id" ,data.id)
+    //     // for(const key in data){
+    //     //   setReceivedEmails({id: key, ...data[key]})
+    //     // }
 
-        // const emails = Object.values(data);
-        // console.log(emails)
-        const emails = Object.keys(data).map((key) => ({
-          id: key,
-          ...data[key],
-        }));
-        setReceivedEmails(emails);
-        console.log(emails);
-      } else {
-        console.error("Failed to fetch received emails");
-      }
+    //     // const emails = Object.values(data);
+    //     // console.log(emails)
+    //     const emails = Object.keys(data).map((key) => ({
+    //       id: key,
+    //       ...data[key],
+    //     }));
+    //     setReceivedEmails(emails);
+    //     console.log(emails);
+    //   } else {
+    //     console.error("Failed to fetch received emails");
+    //   }
+
+    //redux
+    dispatch(receiveMailHandler(fromEmail))
+
+
     };
 
     fetchReceivedEmails();
-  }, [fromEmail]); // Make sure to replace userId with the actual user ID
+  }, [dispatch , fromEmail]); // Make sure to replace userId with the actual user ID
 
+  // if (!receivedEmails) {
+  //   return <div>Loading...</div>; // You can replace this with your loading logic
+  // }
+  
+  // Reverse the array to display the latest received email at the top
+  const reversedEmails = [...receivedEmails].reverse();
   // console.log(receivedEmails);
   return (
     <div className="inbox">
@@ -47,7 +65,7 @@ const Inbox = () => {
       {/* Display received emails */}
       <Stack>
         <span>
-          {receivedEmails.map((email) => (
+          {reversedEmails.map((email) => (
             <EmailBox
               key={email.id}
               title={email.from}

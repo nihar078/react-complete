@@ -5,7 +5,7 @@ import { CiStar } from "react-icons/ci";
 
 const EmailBox = (props) => {
   const time = props.time;
-  //   console.log(time);
+    console.log(time);
 
   const dateObject = new Date(time);
 

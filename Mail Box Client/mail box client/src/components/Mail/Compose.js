@@ -4,7 +4,8 @@ import "./Compose.css";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js"; 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { sentMailHandler } from "../../store/mailActions";
 
 const ComposeEmail = (props) => {
   const [toEmail, setToEmail] = useState("");
@@ -13,6 +14,7 @@ const ComposeEmail = (props) => {
     EditorState.createEmpty());
   const userEmail = useSelector((state) => state.auth.email);
   const fromEmail =  userEmail ? userEmail.replace(/[@.]/g, "") : "";
+  const dispatch = useDispatch()
   // const editorHandler = (newEditorState) => {
   //   setEditorState(newEditorState);
   // };
@@ -36,21 +38,25 @@ const ComposeEmail = (props) => {
     console.log(emailObj);
 
     // Save the email to the sender's "sent" folder
-    const response = await fetch(`https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/sent.json`, {
-      method: "POST",
-      body: JSON.stringify(emailObj),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    if(response.ok){
-      const data = await response.json() 
-      console.log(data)
-    }
-    else{
-      const data = await response.json() 
-      console.error(data.error.message)
-    }
+    // const response = await fetch(`https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/sent.json`, {
+    //   method: "POST",
+    //   body: JSON.stringify(emailObj),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    // if(response.ok){
+    //   const data = await response.json() 
+    //   console.log(data)
+    // }
+    // else{
+    //   const data = await response.json() 
+    //   console.error(data.error.message)
+    // }
+
+    //redux
+    dispatch(sentMailHandler(fromEmail, emailObj))
+
 
     // Save the email to the receiver's "inbox" folder
     await fetch(`https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${reciverEmail}/inbox.json`, {

@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Stack, Button, Modal } from "react-bootstrap";
 import { MdOutlineEdit } from "react-icons/md";
 import { BiImageAlt } from "react-icons/bi";
 import { BiSend } from "react-icons/bi";
 import "./SideBar.css";
 import ComposeEmail from "../Mail/Compose";
+import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 // import ComposeEmail from "../Mail/Compose";
 
@@ -44,26 +45,28 @@ const SideBar = () => {
           {<MdOutlineEdit style={{ marginRight: "0.5rem" }} />}
           {"Compose"}
         </Button>
-          <Modal show= {showModal} onHide={closeComposeHandel} size="xl">
-            <Modal.Header closeButton style={{fontSize: "xx-small"}}/>
-            <Modal.Body>
-              <ComposeEmail onClose={closeComposeHandel}/>
-            </Modal.Body>
-            </Modal>
+        <Modal show={showModal} onHide={closeComposeHandel} size="xl">
+          <Modal.Header closeButton style={{ fontSize: "xx-small" }} />
+          <Modal.Body>
+            <ComposeEmail onClose={closeComposeHandel} />
+          </Modal.Body>
+        </Modal>
       </div>
       <div>
-        <Button
-          variant="light"
-          style={{
-            borderRadius: "2rem",
-            fontSize: "20px",
-            fontWeight: "600",
-            width: "125px",
-          }}
-        >
-          {<BiImageAlt style={{ marginRight: "1rem" }} />}
-          {"Inbox"}
-        </Button>
+        <Link to="/inbox">
+          <Button
+            variant="light"
+            style={{
+              borderRadius: "2rem",
+              fontSize: "20px",
+              fontWeight: "600",
+              width: "125px",
+            }}
+          >
+            {<BiImageAlt style={{ marginRight: "1rem" }} />}
+            {"Inbox"}
+          </Button>
+        </Link>
       </div>
       <div>
         <Button
@@ -86,8 +89,7 @@ const SideBar = () => {
 
 export default SideBar;
 
-
-  /* <Button
+/* <Button
           variant="secondary"
           style={{
             borderRadius: "2rem",
@@ -101,4 +103,3 @@ export default SideBar;
           {"Compose"}
           <ComposeEmail show={showModal} onHide={closeComposeHandel} />
         </Button> */
-
