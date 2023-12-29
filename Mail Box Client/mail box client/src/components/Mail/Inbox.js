@@ -3,17 +3,19 @@ import "./Inbox.css";
 import { Stack } from "react-bootstrap";
 import EmailBox from "./EmailBox";
 import { useDispatch, useSelector } from "react-redux";
-import { receiveMailHandler } from "../../store/mailActions";
+import { inboxHandler } from "../../store/mailActions";
 
 const Inbox = () => {
+    
+  
   // Implement logic to fetch and display received emails
   // const [receivedEmails, setReceivedEmails] = useState([]);
 
   const userEmail = useSelector((state) => state.auth.email);
   const fromEmail = userEmail ? userEmail.replace(/[@.]/g, "") : "";
-  const receivedEmails = useSelector((state) => state.mail.reciveMail);
+  const receivedEmails = useSelector((state) => state.mail.reciveMails);
   const dispatch = useDispatch();
-  console.log(receivedEmails)
+//   console.log(receivedEmails)
   
 
   useEffect(() => {
@@ -44,7 +46,8 @@ const Inbox = () => {
     //   }
 
     //redux
-    dispatch(receiveMailHandler(fromEmail))
+    // dispatch(receiveMailHandler(fromEmail))
+    dispatch(inboxHandler(fromEmail))
 
 
     };
@@ -55,10 +58,10 @@ const Inbox = () => {
   // if (!receivedEmails) {
   //   return <div>Loading...</div>; // You can replace this with your loading logic
   // }
-  
+
   // Reverse the array to display the latest received email at the top
   const reversedEmails = [...receivedEmails].reverse();
-  // console.log(receivedEmails);
+//   console.log(receivedEmails);
   return (
     <div className="inbox">
       <h1>Inbox</h1>
@@ -68,10 +71,13 @@ const Inbox = () => {
           {reversedEmails.map((email) => (
             <EmailBox
               key={email.id}
+              id={email.id}
               title={email.from}
+              to={email.to}
               subject={email.subject}
               message={email.message}
               time = {email.time}
+              isRead = {email.isRead}
             />
           ))}
         </span>

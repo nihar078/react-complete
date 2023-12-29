@@ -7,7 +7,7 @@ const Home = () => {
   const email = useSelector((state) => state.auth.email)
   return (
     <div>
-      <div style={{ left: "1px", display: "flex", alignItems: "center" }}>
+      <div style={{ left: "1px", display: "flex", alignItems: "center"}}>
         <Button
           variant="light"
           style={{ borderRadius: "50px", marginRight: "1rem" }}

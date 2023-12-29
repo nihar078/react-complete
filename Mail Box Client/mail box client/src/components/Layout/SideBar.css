@@ -10,3 +10,9 @@
     font-weight: 600;
     width: 125px;
 }
+
+Stack {
+    width: 180px;
+    height: 100vh;
+    /* Other styles */
+  }

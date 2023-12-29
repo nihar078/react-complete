@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import "./Compose.css";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from "draft-js"; 
+import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch, useSelector } from "react-redux";
-import { sentMailHandler } from "../../store/mailActions";
+import { receiveMailHandler, sentMailHandler } from "../../store/mailActions";
+import { useNavigate } from "react-router-dom";
 
 const ComposeEmail = (props) => {
   const [toEmail, setToEmail] = useState("");
   const [subject, setSubject] = useState("");
-  const [editorState, setEditorState] = useState(
-    EditorState.createEmpty());
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const userEmail = useSelector((state) => state.auth.email);
-  const fromEmail =  userEmail ? userEmail.replace(/[@.]/g, "") : "";
-  const dispatch = useDispatch()
+  const fromEmail = userEmail ? userEmail.replace(/[@.]/g, "") : "";
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // const editorHandler = (newEditorState) => {
   //   setEditorState(newEditorState);
   // };
@@ -27,13 +28,13 @@ const ComposeEmail = (props) => {
 
   const mailSubmitHandler = async (event) => {
     event.preventDefault();
-    const reciverEmail = toEmail.replace(/[@.]/g , "")
+    const reciverEmail = toEmail.replace(/[@.]/g, "");
     const emailObj = {
       to: toEmail,
       from: userEmail,
       subject: subject,
       message: editorState.getCurrentContent().getPlainText(),
-      time: new Date().toISOString()
+      time: new Date().toISOString(),
     };
     console.log(emailObj);
 
@@ -46,28 +47,31 @@ const ComposeEmail = (props) => {
     //   },
     // })
     // if(response.ok){
-    //   const data = await response.json() 
+    //   const data = await response.json()
     //   console.log(data)
     // }
     // else{
-    //   const data = await response.json() 
+    //   const data = await response.json()
     //   console.error(data.error.message)
     // }
 
     //redux
-    dispatch(sentMailHandler(fromEmail, emailObj))
-
+    dispatch(sentMailHandler(fromEmail, emailObj)).then(() => {
+      navigate("/inbox");
+    });
 
     // Save the email to the receiver's "inbox" folder
-    await fetch(`https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${reciverEmail}/inbox.json`, {
-      method: "POST",
-      body: JSON.stringify(emailObj),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-
-
+    // await fetch(
+    //   `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${reciverEmail}/inbox.json`,
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify(emailObj),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // );
+    dispatch(receiveMailHandler(reciverEmail, emailObj))
   };
 
   return (
@@ -98,10 +102,14 @@ const ComposeEmail = (props) => {
             editorClassName="gmail-editor"
             editorState={editorState}
             // onChange={editorHandler}
-            onEditorStateChange={(newEditorState) => setEditorState(newEditorState)}
+            onEditorStateChange={(newEditorState) =>
+              setEditorState(newEditorState)
+            }
           />
         </div>
-        <Button type="submit" onClick={props.onClose}>Send</Button>
+        <Button type="submit" onClick={props.onClose}>
+          Send
+        </Button>
       </Form>
     </Container>
   );

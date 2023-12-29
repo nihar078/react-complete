@@ -7,6 +7,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import ComposeEmail from "./components/Mail/Compose";
 import Inbox from "./components/Mail/Inbox";
 import SentBox from "./components/Mail/SentBox";
+import ShowMail from "./components/Mail/ShowMail";
 
 function App() {
   const authRdx = useSelector((state) => state.auth);
@@ -33,41 +34,30 @@ function App() {
           }
         />
         <Route path="/auth" element={<AuthForm />} />
-        {/* {authRdx.isLoggedIn && (
+        {authRdx.isLoggedIn && (
           <Route
-            path="/compose"
+            path="/inbox"
             element={
-              <>
-                <Header />
-                <ComposeEmail />
-              </>
+              <Navigate to="/home" />
+              // <>
+              //   <Header />
+              //   <Inbox />
+              // </>
             }
           />
-        )} */}
-        {authRdx.isLoggedIn && <Route
-          path="/inbox"
-          element={
-            <Navigate to="/home"/>
-            // <>
-            //   <Header />
-            //   <Inbox />
-            // </>
-          }
-        />}
-        {/* <Route
-          path="/compose"
-          element={
-            authRdx.isLoggedIn && (
-              <>
-                <Header />
-                <ComposeEmail />
-              </>
-            )
-          }
-        /> */}
+        )}
         <Route path="/compose" element={<ComposeEmail />} />
         <Route path="/sent" element={<SentBox />} />
         <Route path="*" element={<Navigate to="/" />} />
+        <Route
+          path="/email/:id"
+          element={
+            <>
+              <Header />
+              <ShowMail />
+            </>
+          }
+        />
       </Routes>
       {/* <Header />
       <AuthForm /> */}

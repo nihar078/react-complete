@@ -6,6 +6,7 @@ import { BiSend } from "react-icons/bi";
 import "./SideBar.css";
 import ComposeEmail from "../Mail/Compose";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 // import ComposeEmail from "../Mail/Compose";
 
@@ -21,6 +22,15 @@ const SideBar = () => {
   // };
   // const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const recevMail = useSelector((state) => state.mail.reciveMails)
+  let totalUnreadMessage = ""
+  recevMail.forEach((email) => {
+    if(!email.isRead){
+        totalUnreadMessage ++
+    }
+  })
+
+
 
   const showComposeHandel = () => {
     setShowModal(true);
@@ -30,30 +40,58 @@ const SideBar = () => {
     setShowModal(false);
   };
   return (
-    <Stack direction="vertical">
-      {/* <div> */}
-      <div>
-        <Button
-          variant="secondary"
-          style={{
-            borderRadius: "2rem",
-            fontSize: "20px",
-            marginBottom: "0.5rem",
-          }}
-          onClick={showComposeHandel}
-        >
-          {<MdOutlineEdit style={{ marginRight: "0.5rem" }} />}
-          {"Compose"}
-        </Button>
-        <Modal show={showModal} onHide={closeComposeHandel} size="xl">
-          <Modal.Header closeButton style={{ fontSize: "xx-small" }} />
-          <Modal.Body>
-            <ComposeEmail onClose={closeComposeHandel} />
-          </Modal.Body>
-        </Modal>
-      </div>
-      <div>
-        <Link to="/inbox">
+
+      <Stack direction="vertical" style={{
+        backgroundColor: "rgb(247, 247, 247)",
+        width: "180px",
+        marginTop: "-16px",
+        height: "625px",
+        display: "flex",
+      flexDirection: "column",
+    //   justifyContent: "space-between",
+      }}>
+        {/* <div> */}
+        <div>
+          <Button
+            variant="secondary"
+            style={{
+              borderRadius: "2rem",
+              fontSize: "20px",
+              marginBottom: "0.5rem",
+              marginTop: "15px",
+              width: "160px"
+            }}
+            onClick={showComposeHandel}
+          >
+            {<MdOutlineEdit style={{ marginRight: "0.5rem" }} />}
+            {"Compose"}
+          </Button>
+          <Modal show={showModal} onHide={closeComposeHandel} size="xl">
+            <Modal.Header closeButton style={{ fontSize: "xx-small" }} />
+            <Modal.Body>
+              <ComposeEmail onClose={closeComposeHandel} />
+            </Modal.Body>
+          </Modal>
+        </div>
+        <div>
+          <Link to="/inbox " >
+            <Button
+              variant="light"
+              style={{
+                borderRadius: "2rem",
+                fontSize: "20px",
+                fontWeight: "600",
+                width: "150px",
+                marginBottom: "0.1rem",
+                // display: "flex"
+              }}
+            >
+              {<BiImageAlt style={{ marginRight: "1rem" }} />}
+              {"Inbox"} {totalUnreadMessage}
+            </Button>
+          </Link>
+        </div>
+        <div>
           <Button
             variant="light"
             style={{
@@ -63,27 +101,12 @@ const SideBar = () => {
               width: "125px",
             }}
           >
-            {<BiImageAlt style={{ marginRight: "1rem" }} />}
-            {"Inbox"}
+            {<BiSend style={{ marginRight: "1rem" }} />}
+            {"Sent"}
           </Button>
-        </Link>
-      </div>
-      <div>
-        <Button
-          variant="light"
-          style={{
-            borderRadius: "2rem",
-            fontSize: "20px",
-            fontWeight: "600",
-            width: "125px",
-          }}
-        >
-          {<BiSend style={{ marginRight: "1rem" }} />}
-          {"Sent"}
-        </Button>
-      </div>
-      {/* </div> */}
-    </Stack>
+        </div>
+        {/* </div> */}
+      </Stack>
   );
 };
 

@@ -15,7 +15,7 @@
 .emailRow_options{
     display: flex;
     align-items: center;
-    margin-right: 16px;
+    margin-right: 6px;
 }
 .emilRow_message{
     display: flex;
@@ -35,4 +35,12 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.emailRead {
+    margin-right: 10px;
+    font-size: 9px;
+    color: blue;
+}
+.emailRow:hover{
+    background-color: rgb(232, 238, 241);
 }
