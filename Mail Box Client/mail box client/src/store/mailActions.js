@@ -74,7 +74,7 @@ export const inboxHandler = (fromEmail) => {
 };
 
 export const markAsReadHandlerBE = (fromEmail, emailId, updated) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
       // Make API call to mark email as read
       const response = await fetch(
@@ -88,9 +88,19 @@ export const markAsReadHandlerBE = (fromEmail, emailId, updated) => {
         }
       );
       if (response.ok) {
-        dispatch(
-          mailActions.markAsReadSuccess({ emailId, updated })
-        );
+        const { mail } = getState();
+        const emailIndex = mail.reciveMails.findIndex((email) => email.id === emailId);
+        if (emailIndex !== -1) {
+            dispatch(
+              mailActions.markAsReadSuccess({
+                id: emailId,
+                update: { isRead: true },
+              })
+            );
+          }
+        // dispatch(
+        //   mailActions.markAsReadSuccess({ emailId, updated })
+        // );
       } else {
         throw new Error("Failed to mark email as read");
       }
