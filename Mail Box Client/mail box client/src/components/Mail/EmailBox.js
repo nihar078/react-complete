@@ -6,8 +6,13 @@ import { FaCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { mailActions } from "../../store/mailSlice";
-import { markAsReadHandlerBE } from "../../store/mailActions";
+import {
+  deleteMailHandler,
+  markAsReadHandlerBE,
+} from "../../store/mailActions";
 // import ShowMail from "./ShowMail";
+import { MdDelete } from "react-icons/md";
+
 // import { useNavigate } from "react-router-dom";
 
 const EmailBox = (props) => {
@@ -60,8 +65,12 @@ const EmailBox = (props) => {
     // }
   };
 
+  const removeHandler = async () => {
+    await dispatch(deleteMailHandler(props.id, fromEmail));
+  };
+
   return (
-    <div>
+    <div style={{ position: "relative", alignItems: "center" }}>
       <Link
         to={`/email/${props.id}`}
         state={{ email: props }}
@@ -77,16 +86,30 @@ const EmailBox = (props) => {
           {!props.isRead ? <h5>{props.title}</h5> : <p>{props.title}</p>}
           <div className="emilRow_message">
             {!props.isRead ? (
-              <h6 style={{ marginRight: "7px" }}>{props.subject}</h6>
+              <h6>{props.subject}</h6>
             ) : (
-              <span style={{ marginRight: "15px" }}>{props.subject}</span>
+              <span>{props.subject}</span>
             )}
             {/* <p>fiok</p> */}
-              <p dangerouslySetInnerHTML={{ __html: props.message }}></p>
+            <p dangerouslySetInnerHTML={{ __html: props.message }}></p>
           </div>
 
-          <p style={{ position: "absolute", right: "0px" }}>{formattedTime}</p>
+          <p style={{ position: "absolute", right: "0px" }} className="time">
+            {formattedTime}
+          </p>
           {/* {showDetail && <ShowMail email={props} />} */}
+          <Link
+            style={{
+              color: "red",
+              position: "absolute",
+              right: "1px",
+              fontSize: "30px",
+            }}
+            className="deleteLink"
+            onClick={removeHandler}
+          >
+            <MdDelete />
+          </Link>
         </div>
       </Link>
     </div>

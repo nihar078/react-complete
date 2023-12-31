@@ -112,3 +112,18 @@ export const markAsReadHandlerBE = (fromEmail, emailId, updated) => {
     }
   };
 };
+
+export const deleteMailHandler = (emailId, fromEmail) => {
+    return async(dispatch)=>{
+        const response = await fetch(`https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/inbox/${emailId}.json`,{
+            method: "DELETE",
+        })
+        if(response.ok){
+            dispatch(mailActions.deleteMail(emailId))
+            console.log("Expense Delete Succesfully from the server")
+        }
+        else{
+            console.error("something went wrong in delete");
+        }
+    }
+}

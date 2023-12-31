@@ -21,12 +21,13 @@
     display: flex;
     flex: 0.3;
     align-items: center;
-    width: 400px;
+    width: 850px;
     text-overflow: ellipsis;
     padding-left: 5px;
     padding-right: 5px;
     text-align: center;
     margin-left: 40px;
+    justify-content: space-between;
 }
 
 .emilRow_message p{
@@ -43,4 +44,17 @@
 }
 .emailRow:hover{
     background-color: rgb(232, 238, 241);
+}
+.deleteLink {
+    visibility: hidden;
+  }
+  
+.emailRow:hover .deleteLink {
+    visibility: visible;
+  }
+.time{
+    visibility: visible;
+}
+.emailRow:hover .time{
+    visibility: hidden;
 }

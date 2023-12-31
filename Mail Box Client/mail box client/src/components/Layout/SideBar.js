@@ -87,7 +87,11 @@ const SideBar = () => {
               }}
             >
               {<BiImageAlt style={{ marginRight: "1rem" }} />}
-              {"Inbox"} {totalUnreadMessage}
+              {"Inbox"} 
+              
+              <span style={{ marginLeft: "10px" }}>
+              {totalUnreadMessage}
+              </span>
             </Button>
           </Link>
         </div>
@@ -98,7 +102,7 @@ const SideBar = () => {
               borderRadius: "2rem",
               fontSize: "20px",
               fontWeight: "600",
-              width: "125px",
+              width: "150px",
             }}
           >
             {<BiSend style={{ marginRight: "1rem" }} />}

@@ -36,6 +36,11 @@ const mailSlice = createSlice({
           : email
       );
     },
+    deleteMail(state, action) {
+      state.reciveMails = state.reciveMails.filter(
+        (email) => email.id !== action.payload
+      );
+    },
   },
 });
 

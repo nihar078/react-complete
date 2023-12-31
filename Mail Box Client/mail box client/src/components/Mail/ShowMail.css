@@ -17,3 +17,17 @@
     margin-left: 25px;
     margin-top: 5px;
 }
+
+.delNavigation{
+    text-decoration: none;
+    color: black;
+}
+
+.backNavigation{
+    text-decoration: none;
+    color: black;
+    justify-content: space-between;
+}
+.backNavigation:hover{
+    color: black;
+}
