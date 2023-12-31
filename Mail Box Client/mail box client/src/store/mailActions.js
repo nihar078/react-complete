@@ -15,8 +15,8 @@ export const sentMailHandler = (fromEmail, emailObj) => {
     if (response.ok) {
       const data = await response.json();
       // console.log(data)
-      // const createMail = {id: data.name, ...emailObj}
-      dispatch(mailActions.setSentMail(data));
+      const createMail = {id: data.name, ...emailObj}
+      dispatch(mailActions.setSentMail(createMail));
     } else {
       const data = await response.json();
       console.error(data.error.message);
@@ -120,6 +120,46 @@ export const deleteMailHandler = (emailId, fromEmail) => {
         })
         if(response.ok){
             dispatch(mailActions.deleteMail(emailId))
+            console.log("Expense Delete Succesfully from the server")
+        }
+        else{
+            console.error("something went wrong in delete");
+        }
+    }
+}
+
+export const sentboxHandler = (fromEmail) => {
+    return async (dispatch) => {
+      const response = await fetch(
+        `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/sent.json`
+      );
+  
+      if (response.ok) {
+        const data = await response.json();
+        // console.log(data)
+        const emailData = [];
+        for (const key in data) {
+          emailData.push({
+            id: key,
+            ...data[key],
+          });
+        }
+  
+        // console.log(emailData);
+        dispatch(mailActions.setSentbox(emailData));
+      } else {
+        console.error("Failed to fetch sent emails");
+      }
+    };
+  };
+
+  export const deleteSentMailHandler = (emailId, fromEmail) => {
+    return async(dispatch)=>{
+        const response = await fetch(`https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/sent/${emailId}.json`,{
+            method: "DELETE",
+        })
+        if(response.ok){
+            dispatch(mailActions.deleteSentMail(emailId))
             console.log("Expense Delete Succesfully from the server")
         }
         else{

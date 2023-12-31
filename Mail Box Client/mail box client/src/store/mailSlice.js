@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialMailState = { sentMail: [], reciveMails: [] };
+const initialMailState = { sentMails: [], reciveMails: [] };
 const mailSlice = createSlice({
   name: "mail",
   initialState: initialMailState,
   reducers: {
     setSentMail(state, action) {
-      state.sentMail = action.payload;
+      state.sentMails = [action.payload, ...state.sentMails];
     },
     setreciveMail(state, action) {
       state.reciveMails = [action.payload, ...state.reciveMails];
@@ -18,6 +18,9 @@ const mailSlice = createSlice({
     },
     setInbox(state, action) {
       state.reciveMails = action.payload;
+    },
+    setSentbox(state, action) {
+      state.sentMails = action.payload;
     },
     markAsReadSuccess(state, action) {
       // const emailId = action.payload;
@@ -38,6 +41,11 @@ const mailSlice = createSlice({
     },
     deleteMail(state, action) {
       state.reciveMails = state.reciveMails.filter(
+        (email) => email.id !== action.payload
+      );
+    },
+    deleteSentMail(state, action) {
+      state.sentMails = state.sentMails.filter(
         (email) => email.id !== action.payload
       );
     },

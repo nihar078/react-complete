@@ -1,36 +1,32 @@
-.showMail{
+.sentShwMail{
     margin-top: -620px;
     margin-left: 200px;
     display: flex;
     flex-direction: column;
 }
-
-.mainMessagebg{
+.sentMainMsgBg{
   border: 1px solid #ddd;
   margin-left: -19px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
-
-.messagecontact{
+.sentMsgCnt{
     display: flex;
     justify-content: space-between;
     margin-left: 25px;
     margin-top: 5px;
 }
-
-.delNavigation{
+.sentDelNav{
     text-decoration: none !important;
     color: black !important;
 }
-.delNavigation:hover{
+.sentDelNav:hover{
     color: blue !important;
 }
-
-.backNavigation{
+.sentBackNav{
     text-decoration: none !important;
     color: black !important;
     justify-content: space-between !important;
 }
-.backNavigation:hover{
+.sentBackNav:hover{
     color: black;
 }

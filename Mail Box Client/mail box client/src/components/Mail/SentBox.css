@@ -1,0 +1,10 @@
+.sent{
+    
+    margin-top: -620px;
+    margin-left: 200px;
+    display: flex;
+    flex-direction: column;
+    /* background: rgb(250, 247, 247); */
+    /* height: 100vh; */
+
+}
