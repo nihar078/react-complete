@@ -4,14 +4,14 @@ import ExpenseForm from "./ExpenseForm/ExpenseForm";
 // import ExpenseContext from "../../store/ExpenseContext";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { expenseActions } from "../../store/expenseSl";
+import { expenseActions } from "../../store/expensesl";
 
 const ExpenseList = () => {
   // const expenseCtx = useContext(ExpenseContext);
   const expenseRdx = useSelector((state) => state.expense);
   const dispatch = useDispatch();
   const authRdx = useSelector((state) => state.auth);
-  const userEmail = authRdx.email ? authRdx.email.replace(/[@.]/g, "") : "";
+  const userEmail = authRdx && authRdx.email ? authRdx.email.replace(/[@.]/g, "") : "";
 
   // const [editMode, setEditMode] = useState(false);
   const [editData, setEditData] = useState(null);
