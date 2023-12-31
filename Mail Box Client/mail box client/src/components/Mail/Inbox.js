@@ -4,6 +4,7 @@ import { Stack } from "react-bootstrap";
 import EmailBox from "./EmailBox";
 import { useDispatch, useSelector } from "react-redux";
 import { inboxHandler } from "../../store/mailActions";
+// import { useInbox } from "../../store/mailHooks";
 
 const Inbox = () => {
   // Implement logic to fetch and display received emails
@@ -16,7 +17,7 @@ const Inbox = () => {
   //   console.log(receivedEmails)
 
   useEffect(() => {
-    const fetchReceivedEmails = async () => {
+    const fetchReceivedEmails = () => {
       // Fetch received emails from Firebase
       //   const response = await fetch(
       //     `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/inbox.json`
@@ -54,6 +55,11 @@ const Inbox = () => {
     return () => clearInterval(interval);
   }, [dispatch, fromEmail]); // Make sure to replace userId with the actual user ID
 
+  // use custom Hooks
+  // const receivedEmails = useInbox()
+
+
+  
   // if (!receivedEmails) {
   //   return <div>Loading...</div>; // You can replace this with your loading logic
   // }
