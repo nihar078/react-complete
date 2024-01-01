@@ -26,7 +26,7 @@ const SentEmailBox = (props) => {
 
   const formattedTime = dateObject.toLocaleTimeString("en-US", options);
 
-  const removeHandler = async () => {
+  const removeSentHandler = async () => {
     await dispatch(deleteSentMailHandler(props.id, fromEmail));
   };
 
@@ -61,7 +61,7 @@ const SentEmailBox = (props) => {
               fontSize: "30px",
             }}
             className="deleteLink"
-            onClick={removeHandler}
+            onClick={removeSentHandler}
           >
             <MdDelete />
           </Link>

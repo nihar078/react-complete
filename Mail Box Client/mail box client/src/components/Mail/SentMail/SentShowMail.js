@@ -45,7 +45,7 @@ console.log(location.state.email)
 
   const emailId = param.id
 
-  const remvHandler = () => {
+  const remvSntHandler = () => {
       dispatch(deleteSentMailHandler(emailId, sentEmail));
       navigate("/sent");
   };
@@ -57,7 +57,7 @@ console.log(location.state.email)
           <MdOutlineKeyboardBackspace />
           {"Back"}
         </Button>
-        <Button variant="link" className="sentDelNav" onClick={remvHandler}>
+        <Button variant="link" className="sentDelNav" onClick={remvSntHandler}>
           <MdDelete style={{ fontSize: "22px" }} />
           {"Delete"}
         </Button>
