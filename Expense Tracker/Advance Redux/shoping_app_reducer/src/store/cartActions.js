@@ -22,7 +22,7 @@ export const fetchCartData = () => {
         cartActions.replaceCart({
           items: cartData.items || [],
           isItemsChanged: cartData.isItemsChanged
-        })
+        }) 
       );
     } catch (error) {
       dispatch(
