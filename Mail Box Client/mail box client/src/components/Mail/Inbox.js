@@ -20,7 +20,7 @@ const Inbox = () => {
     const fetchReceivedEmails = () => {
       // Fetch received emails from Firebase
       //   const response = await fetch(
-      //     `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/inbox.json`
+      //     `https://react-mailbox-pr-default-rtdb.firebaseio.com/${fromEmail}/inbox.json`
       //   );
 
       //   if (response.ok) {
@@ -49,28 +49,15 @@ const Inbox = () => {
     };
 
     fetchReceivedEmails();
-    const interval = setInterval(() => {
-      fetchReceivedEmails();
-    }, 2000);
+    const interval = setInterval(fetchReceivedEmails, 2000);
     return () => clearInterval(interval);
   }, [dispatch, fromEmail]); // Make sure to replace userId with the actual user ID
 
-  // use custom Hooks
-  // const receivedEmails = useInbox()
-
-
-  
-  // if (!receivedEmails) {
-  //   return <div>Loading...</div>; // You can replace this with your loading logic
-  // }
-
-  // Reverse the array to display the latest received email at the top
   const reversedEmails = [...receivedEmails].reverse();
   //   console.log(receivedEmails);
   return (
     <div className="inbox">
       <h1>Inbox</h1>
-      {/* Display received emails */}
       <Stack>
         <span>
           {reversedEmails.map((email) => (

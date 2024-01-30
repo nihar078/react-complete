@@ -53,7 +53,6 @@ const SentEmailBox = (props) => {
             {formattedTime}
           </p>
           <Link
-            // role="link"
             style={{
               color: "red",
               position: "absolute",

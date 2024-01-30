@@ -39,7 +39,7 @@ const ComposeEmail = (props) => {
     console.log(emailObj);
 
     // Save the email to the sender's "sent" folder
-    // const response = await fetch(`https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/sent.json`, {
+    // const response = await fetch(`https://react-mailbox-pr-default-rtdb.firebaseio.com/${fromEmail}/sent.json`, {
     //   method: "POST",
     //   body: JSON.stringify(emailObj),
     //   headers: {
@@ -62,7 +62,7 @@ const ComposeEmail = (props) => {
 
     // Save the email to the receiver's "inbox" folder
     // await fetch(
-    //   `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${reciverEmail}/inbox.json`,
+    //   `https://react-mailbox-pr-default-rtdb.firebaseio.com/${reciverEmail}/inbox.json`,
     //   {
     //     method: "POST",
     //     body: JSON.stringify(emailObj),

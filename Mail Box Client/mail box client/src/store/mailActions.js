@@ -3,7 +3,7 @@ import { mailActions } from "./mailSlice";
 export const sentMailHandler = (fromEmail, emailObj) => {
   return async (dispatch) => {
     const response = await fetch(
-      `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/sent.json`,
+      `https://react-mailbox-pr-default-rtdb.firebaseio.com/${fromEmail}/sent.json`,
       {
         method: "POST",
         body: JSON.stringify(emailObj),
@@ -28,7 +28,7 @@ export const receiveMailHandler = (reciverEmail, emailObj) => {
   const addextraemailobj = { isRead: false, ...emailObj };
   return async (dispatch) => {
     const response = await fetch(
-      `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${reciverEmail}/inbox.json`,
+      `https://react-mailbox-pr-default-rtdb.firebaseio.com/${reciverEmail}/inbox.json`,
       {
         method: "POST",
         body: JSON.stringify(addextraemailobj),
@@ -51,7 +51,7 @@ export const receiveMailHandler = (reciverEmail, emailObj) => {
 export const inboxHandler = (fromEmail) => {
   return async (dispatch) => {
     const response = await fetch(
-      `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/inbox.json`
+      `https://react-mailbox-pr-default-rtdb.firebaseio.com/${fromEmail}/inbox.json`
     );
 
     if (response.ok) {
@@ -76,14 +76,13 @@ export const inboxHandler = (fromEmail) => {
 export const markAsReadHandlerBE = (fromEmail, emailId, updated) => {
   return async (dispatch, getState) => {
     try {
-      // Make API call to mark email as read
       const response = await fetch(
-        `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/inbox/${emailId}.json`,
+        `https://react-mailbox-pr-default-rtdb.firebaseio.com/${fromEmail}/inbox/${emailId}.json`,
         {
           method: "PUT",
           body: JSON.stringify(updated),
           headers: {
-            "Content-Type": "application.json",
+            "Content-Type": "application/json",
           },
         }
       );
@@ -113,13 +112,13 @@ export const markAsReadHandlerBE = (fromEmail, emailId, updated) => {
   };
 };
 
-export const deleteMailHandler = (emailId, fromEmail) => {
+export const deleteMailHandler = (fromEmail, emailId) => {
     return async(dispatch)=>{
-        const response = await fetch(`https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/inbox/${emailId}.json`,{
+        const response = await fetch(`https://react-mailbox-pr-default-rtdb.firebaseio.com/${fromEmail}/inbox/${emailId}.json`,{
             method: "DELETE",
         })
         if(response.ok){
-            dispatch(mailActions.deleteMail(emailId))
+          dispatch(mailActions.deleteMail(emailId))
             console.log("Expense Delete Succesfully from the server")
         }
         else{
@@ -131,7 +130,7 @@ export const deleteMailHandler = (emailId, fromEmail) => {
 export const sentboxHandler = (fromEmail) => {
     return async (dispatch) => {
       const response = await fetch(
-        `https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/sent.json`
+        `https://react-mailbox-pr-default-rtdb.firebaseio.com/${fromEmail}/sent.json`
       );
   
       if (response.ok) {
@@ -155,7 +154,7 @@ export const sentboxHandler = (fromEmail) => {
 
   export const deleteSentMailHandler = (emailId, fromEmail) => {
     return async(dispatch)=>{
-        const response = await fetch(`https://react-mail-box-client-edd2a-default-rtdb.firebaseio.com/${fromEmail}/sent/${emailId}.json`,{
+        const response = await fetch(`https://react-mailbox-pr-default-rtdb.firebaseio.com/${fromEmail}/sent/${emailId}.json`,{
             method: "DELETE",
         })
         if(response.ok){

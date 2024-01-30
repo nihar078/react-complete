@@ -6,10 +6,10 @@ const mailSlice = createSlice({
   initialState: initialMailState,
   reducers: {
     setSentMail(state, action) {
-      state.sentMails = [action.payload, ...state.sentMails];
+      state.sentMails = [...state.sentMails, action.payload];
     },
     setreciveMail(state, action) {
-      state.reciveMails = [action.payload, ...state.reciveMails];
+      state.reciveMails = [...state.reciveMails, action.payload];
       // state.reciveMails = action.payload
       //   state.reciveMail = action.payload.map((email) => ({
       //     ...email,

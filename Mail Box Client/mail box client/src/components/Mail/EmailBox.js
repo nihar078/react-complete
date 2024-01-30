@@ -65,8 +65,8 @@ const EmailBox = (props) => {
     // }
   };
 
-  const removeHandler = async () => {
-    await dispatch(deleteMailHandler(props.id, fromEmail));
+  const removeHandler = () => {
+    dispatch(deleteMailHandler(fromEmail, props.id));
   };
 
   return (

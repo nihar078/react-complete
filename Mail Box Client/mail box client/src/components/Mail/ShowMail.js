@@ -44,7 +44,7 @@ const ShowMail = () => {
   const emailId = param.id
 
   const remvHandler = () => {
-      dispatch(deleteMailHandler(emailId, rcvEmail));
+      dispatch(deleteMailHandler(rcvEmail, emailId));
       navigate("/home");
   };
 
@@ -89,5 +89,6 @@ const ShowMail = () => {
     </div>
   );
 };
+
 
 export default ShowMail;

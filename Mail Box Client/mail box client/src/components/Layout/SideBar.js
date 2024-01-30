@@ -3,7 +3,7 @@ import { Stack, Button, Modal } from "react-bootstrap";
 import { MdOutlineEdit } from "react-icons/md";
 import { BiImageAlt } from "react-icons/bi";
 import { BiSend } from "react-icons/bi";
-import "./SideBar.css";
+// import "./SideBar.css";
 import ComposeEmail from "../Mail/Compose";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
