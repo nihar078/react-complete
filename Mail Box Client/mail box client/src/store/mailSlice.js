@@ -30,7 +30,6 @@ const mailSlice = createSlice({
       // }
       // const emailIndex = state.reciveMails.findIndex((email) => email.id === emailId);
       // if (emailIndex !== -1) {
-      //   // Update the isRead property
       //   state.reciveMails[emailIndex].isRead = true;
       // }
       state.reciveMails = state.reciveMails.map((email) =>

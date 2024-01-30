@@ -104,10 +104,8 @@ export const markAsReadHandlerBE = (fromEmail, emailId, updated) => {
         throw new Error("Failed to mark email as read");
       }
 
-      // Dispatch action to update the Redux store
     } catch (error) {
       console.error(error);
-      // Handle error if necessary
     }
   };
 };
