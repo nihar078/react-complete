@@ -4,7 +4,7 @@ import ExpenseForm from "./ExpenseForm/ExpenseForm";
 // import ExpenseContext from "../../store/ExpenseContext";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { expenseActions } from "../../store/expensesl";
+import {expenseActions } from "../../store/expenseSl"
 
 const ExpenseList = () => {
   // const expenseCtx = useContext(ExpenseContext);
